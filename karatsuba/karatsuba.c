@@ -105,6 +105,26 @@ numarray_t* createArrayFromChar(char* inp) {
    return nt;
 }
 
+numarray_t* clone_na(numarray_t* a) {
+   if (a == NULL || a->num == NULL) {
+      return NULL;
+   }
+
+   numarray_t* clone = malloc(sizeof(numarray_t));
+   if (clone == NULL) {
+      return NULL;
+   }
+
+   clone->len = a->len;
+   clone->num = malloc(sizeof(int)*clone->len);
+   if (clone->num == NULL) {
+      terminateNumArray(clone);
+   }
+
+   memcpy(clone->num, a->num, sizeof(int)*clone->len);
+   return clone;
+}
+
 // Splits an integer into a numarray_t
 numarray_t* splitNumberIntoArray(int i) {
    int digitAmount = ((int) log10((double) i)) + 1;
@@ -274,6 +294,15 @@ numarray_t* SumNumArrays(numarray_t* a, numarray_t* b) {
 
    return result;
 }
+
+// Performs the subtraction a - b (subtracts b from a)
+numarray_t* SubtractNumArray(numarray_t* a, numarray_t* b) {
+   EqualizePadding(a, b);
+
+   numarray_t* result = 
+
+}
+
 
 numarray_t* karatsuba(numarray_t* num_a, numarray_t* num_b){
    if (num_a == NULL || num_b == NULL) {
