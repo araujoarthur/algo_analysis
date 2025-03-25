@@ -5,6 +5,39 @@
 
 void printNumArray(int* numArray, int count);
 
+#define DEBUGGING
+
+#define NUMARRAY_T_DUMP(F, A, T) \
+   do { \
+      printf("\n=============Object Dump for %s @ %s===============\n", F, A); \
+      printf("%s's Address: %p\n", F, &T);\
+      printf("%s's Pointee: %p\n", F, (void*)T);\
+      if(T==NULL){ \
+         printf("T IS NULL \n");\
+         printf("\n=============END DUMP for %s @ %s===============\n", F, A);\
+         break; \
+      }\
+      printf("%s->num Address: %p\n", F, &T->num);\
+      printf("%s->num Pointee: %p\n", F, (void*)T->num); \
+      printf("%s->len value: %zu\n", F, T->len); \
+      printf("%s's numeric value: ", F); \
+      for(int ijk = T->len-1; ijk >= 0; ijk--) { \
+         printf("%d", T->num[ijk]); \
+      }\
+      printf("\n=============END DUMP for %s @ %s===============\n", F, A);\ 
+   }while(0)\
+
+#ifdef DEBUGGING
+   #define DEBUG_OUTPUT(T) printf(T)
+   #define DEBUG_OUTPUT_H(T, U) printf(T, U)
+
+#else
+   #define DEBUG_OUTPUT(T) ((void)0)
+   #define DEBUG_OUTPUT_H(T, U) ((void)0)
+#endif
+
+int karatsuba_executions = 0;
+
 // Holds the number reversed. So idx 0 is 10ˆ0, idx 1 is 10ˆ1 and so on.
 typedef struct NUMARRAY {
    int* num;
@@ -12,7 +45,7 @@ typedef struct NUMARRAY {
 } numarray_t;
 
 // Free a numarray_t
-void* terminateNumArray(numarray_t* t) {
+void* free_na(numarray_t* t) {
    void* copyOfAddress = t;
 
    if (t == NULL) {
@@ -32,15 +65,17 @@ void* terminateNumArray(numarray_t* t) {
 The summation will not work if they don't have the same amount of digits.
 I present ya: PADDING!
 
-padr pads with zero's to the right of the memory layout
+padr pads with zero's to the right of the memory layout and return the same pointer it received.
 */
 numarray_t* padr_na(numarray_t* t, size_t howMuch) {
-   if (t == NULL) {
+   if (t == NULL || t->num == NULL) {
+      DEBUG_OUTPUT("Returning NULL from padr_na, t or t->num was NULL.\n");
       return NULL;
    }
 
    int* ret = realloc(t->num, sizeof(int)*(t->len + howMuch));
    if (ret == NULL) {
+      DEBUG_OUTPUT("Returning NULL from padr_na, realloc failed.\n");
       return NULL;
    }
 
@@ -52,15 +87,44 @@ numarray_t* padr_na(numarray_t* t, size_t howMuch) {
 }
 
 // Guess what it does? Pads to the left of the memory layout
+// it's equivalent to multiplying t*10^howMuch
+// returns a different numarray_t*
 numarray_t* padl_na(numarray_t* t, size_t howMuch) {
-   
-   return NULL;
+   if (t == NULL || t->num == NULL) {
+      DEBUG_OUTPUT("Returning NULL from padl_na, t or t->num was NULL.\n");
+      return NULL;
+   }
+
+   numarray_t* res = malloc(sizeof(int)*(t->len + howMuch));
+   if (res == NULL) {
+      DEBUG_OUTPUT("Returning NULL from padl_na, malloc failed.\n");
+      return NULL;
+   }
+
+   if (howMuch == 0) {
+      memcpy(res->num, t->num, t->len*sizeof(int));
+      res->len=t->len;
+      DEBUG_OUTPUT("Returning early from padl_na, howMuch was 0.\n");
+      return res;
+   }
+
+   res->num = calloc((t->len + howMuch), sizeof(int));
+   if (res->num == NULL) {
+      free_na(res);
+      DEBUG_OUTPUT("Returning NULL from padl_na, calloc failed.\n");
+      return NULL;
+   }
+
+   memcpy(&res->num[howMuch], t->num, sizeof(int)*t->len);
+   res->len = howMuch + t->len;
+   return res;
 }
 
 // Takes a pointer to numarray_t, removes all leading zeros (to the right in memory layout)
 // Returns t without trailling zeros and with the correct length.
 numarray_t* trim_na(numarray_t* t) {
    if (t == NULL || t->num == NULL) {
+      DEBUG_OUTPUT("Returning NULL from trim_na, t was NULL.\n");
       return NULL;
    }
 
@@ -80,6 +144,7 @@ numarray_t* trim_na(numarray_t* t) {
    
    int* new_num = realloc(t->num, sizeof(int)*newlen);
    if (new_num == NULL) {
+      DEBUG_OUTPUT("Returning NULL from trim_na, realloc failed.\n");
       return NULL;
    }
 
@@ -90,12 +155,14 @@ numarray_t* trim_na(numarray_t* t) {
 }
 
 // Equalizes the digit length between a and b by adding 0's to the beginning of the one with the smaller length.
-void EqualizePadding(numarray_t* a, numarray_t* b) {
-   if (a == NULL || b == NULL) {
+void padeq_na(numarray_t* a, numarray_t* b) {
+   if (a == NULL || b == NULL || a->num == NULL || b->num == NULL) {
+      DEBUG_OUTPUT("Returning early from padeq_na, a, b, a->num or b->num was NULL.\n");
       return;
    }
 
    if(a->len == b->len) {
+      DEBUG_OUTPUT("Returning early from padeq_na, both had same length.\n");
       return;
    }
 
@@ -108,15 +175,17 @@ void EqualizePadding(numarray_t* a, numarray_t* b) {
    return;
 }
 
-numarray_t* createEmptyNumArray(int amount){
+numarray_t* cremp_na(int amount){
    numarray_t* result = malloc(sizeof(numarray_t));
    if (result == NULL) {
+      DEBUG_OUTPUT("Returning NULL from cremp_na, result malloc failed.\n");
       return NULL;
    }
 
    result->len = 0; // Yes, zero. The user can set it later
    result->num = malloc(sizeof(int)*amount);
    if (result->num == NULL) {
+      DEBUG_OUTPUT("Returning NULL from cremp_na, result->num malloc failed.\n");
       free(result);
       return NULL;
    }
@@ -125,16 +194,24 @@ numarray_t* createEmptyNumArray(int amount){
 }
 
 // creates a new numarray_t from a string
-numarray_t* createArrayFromChar(char* inp) {
+numarray_t* crfch_na(char* inp) {
+   if (inp == NULL) {
+      DEBUG_OUTPUT("Returning NULL from crfch_na, inp was null.\n");
+      return NULL;
+   }
+
    numarray_t* nt = malloc(sizeof(numarray_t));
    if (nt == NULL) {
+      DEBUG_OUTPUT("Returning NULL from crfch_na, nt malloc failed.\n");
       return NULL;
    }
 
    nt->len = strlen(inp);
    nt->num = malloc(sizeof(int) * nt->len);
    if (nt->num == NULL) {
+      DEBUG_OUTPUT("To Return NULL from crfch_na, nt->num malloc failed.\n");
       free(nt);
+      DEBUG_OUTPUT("Returning NULL from crfch_na, nt->num malloc failed.\n");
       return NULL;
    }
 
@@ -148,18 +225,23 @@ numarray_t* createArrayFromChar(char* inp) {
 
 numarray_t* clone_na(numarray_t* a) {
    if (a == NULL || a->num == NULL) {
+      DEBUG_OUTPUT("Returning NULL from clone_na, a or a->num was null.\n");
       return NULL;
    }
 
    numarray_t* clone = malloc(sizeof(numarray_t));
    if (clone == NULL) {
+      DEBUG_OUTPUT("Returning NULL from clone_na, clone malloc failed.\n");
       return NULL;
    }
 
    clone->len = a->len;
    clone->num = malloc(sizeof(int)*clone->len);
    if (clone->num == NULL) {
-      terminateNumArray(clone);
+      DEBUG_OUTPUT("To return NULL from clone_na, clone->num malloc failed.\n");
+      free_na(clone);
+      DEBUG_OUTPUT("Returning NULL from clone_na, clone->num malloc failed.\n");
+      return NULL;
    }
 
    memcpy(clone->num, a->num, sizeof(int)*clone->len);
@@ -167,17 +249,22 @@ numarray_t* clone_na(numarray_t* a) {
 }
 
 // Splits an integer into a numarray_t
-numarray_t* splitNumberIntoArray(int i) {
-   int digitAmount = ((int) log10((double) i)) + 1;
+numarray_t* splint_na(int i) {
+   DEBUG_OUTPUT_H("\nENTERING splint_na - (i = %d)\n", i);
+
+   int digitAmount = i > 0 ? ((int) log10((double) i)) + 1 : 1;
    
    numarray_t* nt = malloc(sizeof(numarray_t));
    if (nt == NULL) {
+      DEBUG_OUTPUT("Returning NULL from splint_na, nt malloc failed.\n");
       return NULL;
    }
 
    nt->num = malloc(sizeof(int)*digitAmount);
    if (nt->num == NULL) {
+      DEBUG_OUTPUT("To Return NULL from splint_na, nt->num malloc failed.\n");
       free(nt);
+      DEBUG_OUTPUT("Returning NULL from splint_na, nt->num malloc failed.\n");
       return NULL;
    }
 
@@ -236,22 +323,32 @@ That the memory copy must happen in the following way:
    For x1:
       from &t->num[n] to t->num+(2n-1), effectively copying n bytes from interval [n, 2n-1].
 */
-numarray_t** splitElements(numarray_t* t, int n) {
+numarray_t** splem_na(numarray_t* t, int n) {
+   if(t == NULL){
+      DEBUG_OUTPUT("Returning NULL from splem_na, t was NULL.\n");
+      return NULL;
+   }
    numarray_t** res = malloc(sizeof(numarray_t*)*2);
    if (res == NULL) {
+      DEBUG_OUTPUT("Returning NULL from splem_na, res malloc failed.\n");
       return NULL;
    }
 
    res[0] = malloc(sizeof(numarray_t));
    if (res[0] == NULL) {
+      DEBUG_OUTPUT("To Return NULL from splem_na, res[0] malloc failed.\n");
       free(res);
+      DEBUG_OUTPUT("Returning NULL from splem_na, res[0] malloc failed.\n");
       return NULL;
    }
 
    res[1] = malloc(sizeof(numarray_t));
    if (res[1] == NULL) {
+      DEBUG_OUTPUT("To Return (1) NULL from splem_na, res[1] malloc failed.\n");
       free(res[0]);
+      DEBUG_OUTPUT("To Return (2) NULL from splem_na, res[1] malloc failed.\n");
       free(res);
+      DEBUG_OUTPUT("Returning NULL from splem_na, res[1] malloc failed.\n");
       return NULL;
    }
 
@@ -260,18 +357,26 @@ numarray_t** splitElements(numarray_t* t, int n) {
 
    res[0]->num = malloc(sizeof(int) * res[0]->len);
    if (res[0]->num == NULL) {
+      DEBUG_OUTPUT("To Return (1) NULL from splem_na, res[0]->num malloc failed.\n");
       free(res[0]);
+      DEBUG_OUTPUT("To Return (1) NULL from splem_na, res[0]->num malloc failed.\n");
       free(res[1]);
+      DEBUG_OUTPUT("To Return (1) NULL from splem_na, res[0]->num malloc failed.\n");
       free(res);
       return NULL;
    }
 
    res[1]->num = malloc(sizeof(int)*res[1]->len);
    if (res[1]->num == NULL) {
+      DEBUG_OUTPUT("To Return (1) NULL from splem_na, res[1]->num malloc failed.\n");
       free(res[0]->num);
+      DEBUG_OUTPUT("To Return (2) NULL from splem_na, res[1]->num malloc failed.\n");
       free(res[0]);
+      DEBUG_OUTPUT("To Return (3) NULL from splem_na, res[1]->num malloc failed.\n");
       free(res[1]);
+      DEBUG_OUTPUT("To Return (4) NULL from splem_na, res[1]->num malloc failed.\n");
       free(res);
+      DEBUG_OUTPUT("Returning NULL from splem_na, res[1]->num malloc failed.\n");
       return NULL;
    }
 
@@ -295,8 +400,13 @@ Assumptions:
    1. A sum of two positive **single-digit** integers is ALWAYS in the interval [0, 18]
 */
 numarray_t* sum_na(numarray_t* a, numarray_t* b) {
+   if (a == NULL || b == NULL || a->num == NULL || b->num == NULL) {
+      DEBUG_OUTPUT("Returning NULL from sum_na, a, b, a->num or b->num was NULL.\n");
+      return NULL;
+   }
+
    int carry = 0;
-   numarray_t* result = createEmptyNumArray(a->len+b->len);
+   numarray_t* result = cremp_na(a->len+b->len);
 
    if (a->len != b->len) {
       if (a->len > b->len) {
@@ -328,6 +438,7 @@ numarray_t* sum_na(numarray_t* a, numarray_t* b) {
    // Adjustments to the size;
    int* r = realloc(result->num, sizeof(int)*result->len);
    if (r == NULL){
+      DEBUG_OUTPUT("Returning NULL from sum_na, r realloc failed.\n");
       return NULL;
    }
 
@@ -339,7 +450,7 @@ numarray_t* sum_na(numarray_t* a, numarray_t* b) {
 // Performs the subtraction a - b (subtracts b from a)
 // This function has the assumption that a-b is still a positive number.
 numarray_t* subtract_na(numarray_t* a, numarray_t* b) {
-   EqualizePadding(a, b);
+   padeq_na(a, b);
 
    numarray_t* result = clone_na(a);
    int borrow = 0;
@@ -367,32 +478,57 @@ numarray_t* subtract_na(numarray_t* a, numarray_t* b) {
    return trim_na(result);
 }
 
+void printn_na(numarray_t* t) {
+   if (t == NULL || t->num == NULL) {
+      return;
+   }
+   
+   for(int i = t->len-1; i >= 0; i--) {
+      printf("%d", t->num[i]);
+   }
+
+   printf("\n");
+}
 
 numarray_t* karatsuba(numarray_t* num_a, numarray_t* num_b){
-   if (num_a == NULL || num_b == NULL) {
+   DEBUG_OUTPUT_H("\n(%d) - ENTERING KARATSUBA\n", karatsuba_executions++);
+   if (num_a == NULL || num_b == NULL || num_a->num == NULL || num_b->num == NULL) {
+      DEBUG_OUTPUT("---Returning NULL from karatsuba, num_a, num_b, num_a->num or num_b->num was NULL.\n");
       return NULL;
    }
 
-   EqualizePadding(num_a, num_b);
+   NUMARRAY_T_DUMP("num_a", "karatsuba", num_a);
+
+   NUMARRAY_T_DUMP("num_b", "karatsuba", num_b);
+
+   DEBUG_OUTPUT("--Equalizing Padding\n");
+   padeq_na(num_a, num_b);
 
    if (num_a->len == 1 && num_b->len == 1) { // I assume both will be size 1 because I only consider inputs that have power of two length
       int result = num_a->num[0] * num_b->num[0];
-      numarray_t* res_na_t = splitNumberIntoArray(result);
-      //Should I free num_a and num_b and return only the result?
+      DEBUG_OUTPUT("Just Multiplied!\n");
+      DEBUG_OUTPUT_H("num_a->num[0] was %d\n", num_a->num[0]);
+      DEBUG_OUTPUT_H("num_b->num[0] was %d\n", num_b->num[0]);
+      numarray_t* res_na_t = splint_na(result);
+      DEBUG_OUTPUT("--Returning res_na_t\n");
       return res_na_t;
    }
 
    int new_n;
    new_n = (num_a->len > num_b->len ? num_b->len : num_a->len)/2;
-   numarray_t** x = splitElements(num_a, new_n);
+   numarray_t** x = splem_na(num_a, new_n);
    if(x == NULL) {
+      DEBUG_OUTPUT("Returning NULL from karatsuba, x was NULL.\n");
       return NULL;
    }
 
-   numarray_t** y = splitElements(num_b, new_n);
+   numarray_t** y = splem_na(num_b, new_n);
    if (y == NULL) {
-      terminateNumArray(x[0]);
-      terminateNumArray(x[1]);
+      DEBUG_OUTPUT("To Return NULL (1) from karatsuba, y was NULL.\n");
+      free_na(x[0]);
+      DEBUG_OUTPUT("To Return NULL (2) from karatsuba, y was NULL.\n");
+      free_na(x[1]);
+      DEBUG_OUTPUT("Returning NULL from karatsuba, y was NULL.\n");
       return NULL;
    }
 
@@ -401,122 +537,64 @@ numarray_t* karatsuba(numarray_t* num_a, numarray_t* num_b){
 
    numarray_t* y0 = y[0];
    numarray_t* y1 = y[1];
-
+   
+   DEBUG_OUTPUT("-- Applying SUM at karatsuba\n");
    numarray_t* sum_x = sum_na(x[0], x[1]);
+   DEBUG_OUTPUT("-- Applying SUM at karatsuba\n");
    numarray_t* sum_y = sum_na(y[0], y[1]);
 
+   DEBUG_OUTPUT("-- Applying MULTIPLICATION z1 at karatsuba\n");
    numarray_t* z0 = karatsuba(x[0], y[0]);
+   DEBUG_OUTPUT("-- Applying MULTIPLICATION z2 at karatsuba\n");
    numarray_t* z2 = karatsuba(x[1], y[1]);
 
-   EqualizePadding(sum_x, sum_y);
+   padeq_na(sum_x, sum_y);
+   DEBUG_OUTPUT("-- Applying MULTIPLICATION z3 at karatsuba\n");
    numarray_t* z3 = karatsuba(sum_x, sum_y);
 
    // proceed to subtraction
+   DEBUG_OUTPUT("-- Applying SUBTRACTION z1 at karatsuba\n");
    numarray_t* z1 = subtract_na(z3, z2);
+   DEBUG_OUTPUT("-- Applying SUBTRACTION z1 at karatsuba\n");
+   numarray_t* old_z1 = z1;
+   //terminateNumArray(old_z1);
+   //terminateNumArray(z3);
+
    z1 = subtract_na(z1, z0);
 
-   // pad left each zn accordingly, add them, return the result of the addition.
+
+   numarray_t* paddedZ1 = padl_na(z1, num_a->len/2);
+   //terminateNumArray(z1);
+   numarray_t* paddedZ2 = padl_na(z2, num_a->len);
+   //terminateNumArray(z2);
+
+   numarray_t* intermediary_sum = sum_na(paddedZ1, paddedZ2);
+   numarray_t* result = sum_na(intermediary_sum, z0);
+   //terminateNumArray(intermediary_sum);
+   //terminateNumArray(z0);
+
+
    // should I free num_a and num_b and return only the result?
-   return NULL;
+   return trim_na(result);
 }
 
 int main() {
    char* inputNumber1 = "3141592653589793238462643383279502884197169399375105820974944592";
    char* inputNumber2 = "2718281828459045235360287471352662497757247093699959574966967627";
    
-   numarray_t* in1 = createArrayFromChar(inputNumber1);
+   numarray_t* in1 = crfch_na(inputNumber1);
    printNumArray(in1->num, in1->len);
-   numarray_t* in2 = createArrayFromChar(inputNumber2);
+   numarray_t* in2 = crfch_na(inputNumber2);
    printNumArray(in2->num, in2->len);
-   numarray_t* in3 = splitNumberIntoArray(123445);
-   printNumArray(in3->num, in3->len);
-   numarray_t** split = splitElements(in2, in2->len/2);
-   if (split == NULL) {
-      printf("Split failed.\n");
-   }
 
-
-   numarray_t* testSum1 = createArrayFromChar("2");
-   printNumArray(testSum1->num, testSum1->len);
-   numarray_t* testSum2 = createArrayFromChar("3");
-   printNumArray(testSum2->num, testSum2->len);
-   numarray_t* summation = sum_na(testSum1, testSum2);
-   printNumArray(summation->num, summation->len);
-   printf("\n\n\n\n");
-
-   numarray_t* testPad1 = createArrayFromChar("234521");
-   numarray_t* testPad2 = createArrayFromChar("244");
-   printf("testPad1: ");
-   printNumArray(testPad1->num, testPad1->len);
-   printf("testPad2: ");
-   printNumArray(testPad2->num, testPad2->len);
-
-   EqualizePadding(testPad1, testPad2);
-
-   printf("Equalized testPad1: ");
-   printNumArray(testPad1->num, testPad1->len);
-   printf("Equalized testPad2: ");
-   printNumArray(testPad2->num, testPad2->len);
-
-   // TRIM TESTS
-
-   printf("\n\n\n\n");
-   printf("Trim Test Test\n");
-   numarray_t* nothing_to_trim = createArrayFromChar("200");
-   numarray_t* one_zero_to_trim = createArrayFromChar("01000");
-   numarray_t* multiple_zero_to_trim = createArrayFromChar("000103420");
-   printf("nothing_to_trim: ");
-   printNumArray(nothing_to_trim->num, nothing_to_trim->len);
-
-   printf("one_zero_to_trim: ");
-   printNumArray(one_zero_to_trim->num, one_zero_to_trim->len);
-
-   printf("multiple_zero_to_trim: ");
-   printNumArray(multiple_zero_to_trim->num, multiple_zero_to_trim->len);
-
-   printf("\ntrimming\n");
-
-   numarray_t* nothing_to_trim_trimmed = trim_na(nothing_to_trim);
-   numarray_t* one_zero_to_trim_trimmed = trim_na(one_zero_to_trim);
-   numarray_t* multiple_zero_to_trim_trimmed = trim_na(multiple_zero_to_trim);
-
-   printf("nothing_to_trim_trimmed: ");
-   printNumArray(nothing_to_trim_trimmed->num, nothing_to_trim_trimmed->len);
-
-   printf("one_zero_to_trim_trimmed: ");
-   printNumArray(one_zero_to_trim_trimmed->num, one_zero_to_trim_trimmed->len);
-
-   printf("multiple_zero_to_trim_trimmed: ");
-   printNumArray(multiple_zero_to_trim_trimmed->num, multiple_zero_to_trim_trimmed->len);
-
-
-   printf("\n\n\n\n");
-   printf("Subtraction Test\n");
-   numarray_t* testSubtrA = createArrayFromChar("288");
-   printNumArray(testSubtrA->num, testSubtrA->len);
-   numarray_t* testSubtrB = createArrayFromChar("199");
-   printNumArray(testSubtrB->num, testSubtrB->len);
-
-   numarray_t* subtractionAfter = subtract_na(testSubtrA, testSubtrB);
-   printNumArray(subtractionAfter->num, subtractionAfter->len);
-
-   numarray_t* tsA = createArrayFromChar("2888");
-   numarray_t* tsB = createArrayFromChar("999");
-   numarray_t* tsC = createArrayFromChar("100");
-   numarray_t* tsD = createArrayFromChar("10");
-   
-   numarray_t* stepped_subtraction = subtract_na(tsA, tsB);
-   printf("Stepped Subtraction Step 1 (EXPECTED 1889 [9,8,8,1]): ");
-   printNumArray(stepped_subtraction->num, stepped_subtraction->len);
-
-   stepped_subtraction = subtract_na(stepped_subtraction, tsC);
-   printf("Stepped Subtraction Step 2 (EXPECTED 1789 [9,8,7,1]): ");
-   printNumArray(stepped_subtraction->num, stepped_subtraction->len);
-
-   stepped_subtraction = subtract_na(stepped_subtraction, tsD);
-   printf("Stepped Subtraction Step 3 (EXPECTED 1789 [9,7,7,1]): ");
-   printNumArray(stepped_subtraction->num, stepped_subtraction->len);
-
+   printf("\n\n\nKARATSUBA TEST\n\n\n");
+   numarray_t* mult_test2 = crfch_na("3141592653589793238462643383279502884197169399375105820974944592");
+   numarray_t* mult_test1 = crfch_na("15");
+   numarray_t* karatsuba_1_2 = karatsuba(mult_test2, mult_test1);
+   printf("25x15 = ");
+   NUMARRAY_T_DUMP("karatsuba_1_2", "main", karatsuba_1_2);
+   printn_na(karatsuba_1_2);
+   printf("...");
    return 0;
 }
 
