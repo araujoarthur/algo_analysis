@@ -6,26 +6,31 @@
 void printNumArray(int* numArray, int count);
 
 #define DEBUGGING
+//#define DUMPING
 
-#define NUMARRAY_T_DUMP(F, A, T) \
-   do { \
-      printf("\n=============Object Dump for %s @ %s===============\n", F, A); \
-      printf("%s's Address: %p\n", F, &T);\
-      printf("%s's Pointee: %p\n", F, (void*)T);\
-      if(T==NULL){ \
-         printf("T IS NULL \n");\
-         printf("\n=============END DUMP for %s @ %s===============\n", F, A);\
-         break; \
-      }\
-      printf("%s->num Address: %p\n", F, &T->num);\
-      printf("%s->num Pointee: %p\n", F, (void*)T->num); \
-      printf("%s->len value: %zu\n", F, T->len); \
-      printf("%s's numeric value: ", F); \
-      for(int ijk = T->len-1; ijk >= 0; ijk--) { \
-         printf("%d", T->num[ijk]); \
-      }\
-      printf("\n=============END DUMP for %s @ %s===============\n", F, A);\ 
-   }while(0)\
+#ifdef DUMPING
+   #define NUMARRAY_T_DUMP(F, A, T) \
+      do { \
+         printf("\n=============Object Dump for %s @ %s===============\n", F, A);\
+         printf("%s's Address: %p\n", F, &T);\
+         printf("%s's Pointee: %p\n", F, (void*)T);\
+         if(T==NULL){ \
+            printf("T IS NULL \n");\
+            printf("\n=============END DUMP for %s @ %s===============\n", F, A);\
+            break; \
+         }\
+         printf("%s->num Address: %p\n", F, &T->num);\
+         printf("%s->num Pointee: %p\n", F, (void*)T->num); \
+         printf("%s->len value: %zu\n", F, T->len); \
+         printf("%s's numeric value: ", F); \
+         for(int ijk = T->len-1; ijk >= 0; ijk--) { \
+            printf("%d", T->num[ijk]); \
+         }\
+         printf("\n=============END DUMP for %s @ %s===============\n", F, A);\ 
+      }while(0)
+#else
+      #define NUMARRAY_T_DUMP(F, A, T) ((void)0)
+#endif
 
 #ifdef DEBUGGING
    #define DEBUG_OUTPUT(T) printf(T)
@@ -61,11 +66,25 @@ void* free_na(numarray_t* t) {
    return copyOfAddress;
 }
 
-/*
-The summation will not work if they don't have the same amount of digits.
-I present ya: PADDING!
+void printn_na(numarray_t* t) {
+   if (t == NULL || t->num == NULL) {
+      return;
+   }
+   
+   for(int i = t->len-1; i >= 0; i--) {
+      printf("%d", t->num[i]);
+   }
 
-padr pads with zero's to the right of the memory layout and return the same pointer it received.
+   printf("\n");
+}
+
+/*
+The summation will not work if they don't have the same amount of digits. For this reason I wrote this
+padr_na function, it takes two parameters:
+   - t, a pointer to type numarray_t
+   - howMuch, a size_t specifying how many zeros it should pad to the **right** of the memory layout.
+
+The return value is the object pointed by t with the padding corrected.
 */
 numarray_t* padr_na(numarray_t* t, size_t howMuch) {
    if (t == NULL || t->num == NULL) {
@@ -452,6 +471,9 @@ numarray_t* sum_na(numarray_t* a, numarray_t* b) {
 numarray_t* subtract_na(numarray_t* a, numarray_t* b) {
    padeq_na(a, b);
 
+   NUMARRAY_T_DUMP("a", "subtract_na", a);
+   NUMARRAY_T_DUMP("b", "subtract_na", b);
+
    numarray_t* result = clone_na(a);
    int borrow = 0;
    for(int i = 0; i < a->len; i++) {
@@ -472,22 +494,14 @@ numarray_t* subtract_na(numarray_t* a, numarray_t* b) {
 
    // Checking if after the loop, borrow is still 1. It means something wen't wrong and b > a
    if (borrow == 1) {
+      printf("subtraction failed\na: ");
+      printn_na(a);
+      printf("b: ");
+      printn_na(b);
       exit(EXIT_FAILURE);
    }
 
    return trim_na(result);
-}
-
-void printn_na(numarray_t* t) {
-   if (t == NULL || t->num == NULL) {
-      return;
-   }
-   
-   for(int i = t->len-1; i >= 0; i--) {
-      printf("%d", t->num[i]);
-   }
-
-   printf("\n");
 }
 
 numarray_t* karatsuba(numarray_t* num_a, numarray_t* num_b){
@@ -532,44 +546,39 @@ numarray_t* karatsuba(numarray_t* num_a, numarray_t* num_b){
       return NULL;
    }
 
-   numarray_t* x0 = x[0];
-   numarray_t* x1 = x[1];
+   numarray_t* a = x[0];
+   numarray_t* b = x[1];
 
-   numarray_t* y0 = y[0];
-   numarray_t* y1 = y[1];
+   numarray_t* c = y[0];
+   numarray_t* d = y[1];
    
    DEBUG_OUTPUT("-- Applying SUM at karatsuba\n");
-   numarray_t* sum_x = sum_na(x[0], x[1]);
+   numarray_t* p = sum_na(a, b);
    DEBUG_OUTPUT("-- Applying SUM at karatsuba\n");
-   numarray_t* sum_y = sum_na(y[0], y[1]);
+   numarray_t* q = sum_na(c, d);
 
-   DEBUG_OUTPUT("-- Applying MULTIPLICATION z1 at karatsuba\n");
-   numarray_t* z0 = karatsuba(x[0], y[0]);
-   DEBUG_OUTPUT("-- Applying MULTIPLICATION z2 at karatsuba\n");
-   numarray_t* z2 = karatsuba(x[1], y[1]);
+   DEBUG_OUTPUT("-- Applying MULTIPLICATION ac at karatsuba\n");
+   numarray_t* ac = karatsuba(a, c);
+   DEBUG_OUTPUT("-- Applying MULTIPLICATION bd at karatsuba\n");
+   numarray_t* bd = karatsuba(b, d);
 
-   padeq_na(sum_x, sum_y);
-   DEBUG_OUTPUT("-- Applying MULTIPLICATION z3 at karatsuba\n");
-   numarray_t* z3 = karatsuba(sum_x, sum_y);
+   DEBUG_OUTPUT("-- Applying MULTIPLICATION pq at karatsuba\n");
+   numarray_t* pq = karatsuba(p, q);
 
+   DEBUG_OUTPUT("-- Applying SUM of ac+bd z1 at karatsuba\n");
+   numarray_t* acbd = sum_na(ac, bd);
    // proceed to subtraction
-   DEBUG_OUTPUT("-- Applying SUBTRACTION z1 at karatsuba\n");
-   numarray_t* z1 = subtract_na(z3, z2);
-   DEBUG_OUTPUT("-- Applying SUBTRACTION z1 at karatsuba\n");
-   numarray_t* old_z1 = z1;
-   //terminateNumArray(old_z1);
-   //terminateNumArray(z3);
-
-   z1 = subtract_na(z1, z0);
+   
+   numarray_t* adbc = subtract_na(pq, acbd); // pq - (ac + bd)
 
 
-   numarray_t* paddedZ1 = padl_na(z1, num_a->len/2);
-   //terminateNumArray(z1);
-   numarray_t* paddedZ2 = padl_na(z2, num_a->len);
-   //terminateNumArray(z2);
+   numarray_t* paddedAC = padl_na(ac, num_a->len);
 
-   numarray_t* intermediary_sum = sum_na(paddedZ1, paddedZ2);
-   numarray_t* result = sum_na(intermediary_sum, z0);
+   numarray_t* paddedADBC = padl_na(adbc, num_a->len/2);
+  
+
+   numarray_t* intermediary_sum = sum_na(paddedAC, paddedADBC);
+   numarray_t* result = sum_na(intermediary_sum, bd);
    //terminateNumArray(intermediary_sum);
    //terminateNumArray(z0);
 
@@ -589,7 +598,7 @@ int main() {
 
    printf("\n\n\nKARATSUBA TEST\n\n\n");
    numarray_t* mult_test2 = crfch_na("3141592653589793238462643383279502884197169399375105820974944592");
-   numarray_t* mult_test1 = crfch_na("15");
+   numarray_t* mult_test1 = crfch_na("2718281828459045235360287471352662497757247093699959574966967627");
    numarray_t* karatsuba_1_2 = karatsuba(mult_test2, mult_test1);
    printf("25x15 = ");
    NUMARRAY_T_DUMP("karatsuba_1_2", "main", karatsuba_1_2);
