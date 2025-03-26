@@ -1,0 +1,967 @@
+3141592653589793238462643383279502884197169399375105820974944592
+2718281828459045235360287471352662497757247093699959574966967627
+
+[SPAWN NODE-ID 0] Entered Karatsuba With num_a = 123456789012 ; num_b = 123456789012
+| [NODE-ID 0 | DEPTH: 1] Created Clones: cln_a: 123456789012 ; cln_b = 123456789012
+| [NODE-ID 0 | DEPTH: 1] (Pre-AC) Going Recursive(1) on ac | a = 123456 ; c = 123456
+| 
+| [SPAWN NODE-ID 1] Entered Karatsuba With num_a = 123456 ; num_b = 123456
+| | [NODE-ID 1 | DEPTH: 2] Created Clones: cln_a: 123456 ; cln_b = 123456
+| | [NODE-ID 1 | DEPTH: 2] (Pre-AC) Going Recursive(2) on ac | a = 123 ; c = 123
+| | 
+| | [SPAWN NODE-ID 2] Entered Karatsuba With num_a = 123 ; num_b = 123
+| | | [NODE-ID 2 | DEPTH: 3] Created Clones: cln_a: 123 ; cln_b = 123
+| | | [NODE-ID 2 | DEPTH: 3] (Pre-AC) Going Recursive(3) on ac | a = 12 ; c = 12
+| | | 
+| | | [SPAWN NODE-ID 3] Entered Karatsuba With num_a = 12 ; num_b = 12
+| | | | [NODE-ID 3 | DEPTH: 4] Created Clones: cln_a: 12 ; cln_b = 12
+| | | | [NODE-ID 3 | DEPTH: 4] (Pre-AC) Going Recursive(4) on ac | a = 1 ; c = 1
+| | | | 
+| | | | [SPAWN NODE-ID 4] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | [NODE-ID 4 | DEPTH: 5] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | Node 4 Returned as Base Case 1
+| | | | [NODE-ID 3 | DEPTH: 5] (AC Performed) Received Return from Karatsuba(4) | a = 1 ; c = 1 | ac: 1
+| | | | [NODE-ID 3 | DEPTH: 5] (Pre-BD) Going Recursive(4) on bd| b = 2 ; d = 2
+| | | | | 
+| | | | | [SPAWN NODE-ID 5] Entered Karatsuba With num_a = 2 ; num_b = 2
+| | | | | | [NODE-ID 5 | DEPTH: 6] Created Clones: cln_a: 2 ; cln_b = 2
+| | | | | Node 5 Returned as Base Case 4
+| | | | [NODE-ID 3 | DEPTH: 6] (BD Performed) Received Return from Karatsuba(4) | b = 2 ; d = 2 | bd: 4
+| | | | [NODE-ID 3 | DEPTH: 6] (Pre-PQ) Going Recursive(4) on pq | p = 3 ; q = 3
+| | | | | | 
+| | | | | | [SPAWN NODE-ID 6] Entered Karatsuba With num_a = 3 ; num_b = 3
+| | | | | | | [NODE-ID 6 | DEPTH: 7] Created Clones: cln_a: 3 ; cln_b = 3
+| | | | | | Node 6 Returned as Base Case 9
+| | | | [NODE-ID 3 | DEPTH: 7] (PQ Performed) Received Return from Karatsuba(4) | p = 3 ; q = 3 | pq: 9
+padFactor (2), padFactor/2 (1) ---- 1 * 10^2 + 4 * 10^1 + 4
+ac*10ˆ2 = 100 | adbc*10ˆ1 = 40
+| Node 3 Returned 144(3)
+| | | [NODE-ID 2 | DEPTH: 7] (AC Performed) Received Return from Karatsuba(3) | a = 12 ; c = 12 | ac: 144
+| | | [NODE-ID 2 | DEPTH: 7] (Pre-BD) Going Recursive(3) on bd| b = 03 ; d = 03
+| | | | | | | 
+| | | | | | | [SPAWN NODE-ID 7] Entered Karatsuba With num_a = 03 ; num_b = 03
+| | | | | | | | [NODE-ID 7 | DEPTH: 8] Created Clones: cln_a: 03 ; cln_b = 03
+| | | | | | | | [NODE-ID 7 | DEPTH: 8] (Pre-AC) Going Recursive(8) on ac | a = 0 ; c = 0
+| | | | | | | | 
+| | | | | | | | [SPAWN NODE-ID 8] Entered Karatsuba With num_a = 0 ; num_b = 0
+| | | | | | | | | [NODE-ID 8 | DEPTH: 9] Created Clones: cln_a: 0 ; cln_b = 0
+| | | | | | | | Node 8 Returned as Base Case 0
+| | | | | | | | [NODE-ID 7 | DEPTH: 9] (AC Performed) Received Return from Karatsuba(8) | a = 0 ; c = 0 | ac: 0
+| | | | | | | | [NODE-ID 7 | DEPTH: 9] (Pre-BD) Going Recursive(8) on bd| b = 3 ; d = 3
+| | | | | | | | | 
+| | | | | | | | | [SPAWN NODE-ID 9] Entered Karatsuba With num_a = 3 ; num_b = 3
+| | | | | | | | | | [NODE-ID 9 | DEPTH: 10] Created Clones: cln_a: 3 ; cln_b = 3
+| | | | | | | | | Node 9 Returned as Base Case 9
+| | | | | | | | [NODE-ID 7 | DEPTH: 10] (BD Performed) Received Return from Karatsuba(8) | b = 3 ; d = 3 | bd: 9
+| | | | | | | | [NODE-ID 7 | DEPTH: 10] (Pre-PQ) Going Recursive(8) on pq | p = 3 ; q = 3
+| | | | | | | | | | 
+| | | | | | | | | | [SPAWN NODE-ID 10] Entered Karatsuba With num_a = 3 ; num_b = 3
+| | | | | | | | | | | [NODE-ID 10 | DEPTH: 11] Created Clones: cln_a: 3 ; cln_b = 3
+| | | | | | | | | | Node 10 Returned as Base Case 9
+| | | | | | | | [NODE-ID 7 | DEPTH: 11] (PQ Performed) Received Return from Karatsuba(8) | p = 3 ; q = 3 | pq: 9
+padFactor (2), padFactor/2 (1) ---- 0 * 10^2 +  * 10^1 + 9
+ac*10ˆ2 = 000 | adbc*10ˆ1 = 0
+| | | Node 7 Returned 009(3)
+| | | [NODE-ID 2 | DEPTH: 11] (BD Performed) Received Return from Karatsuba(3) | b = 03 ; d = 03 | bd: 9
+| | | [NODE-ID 2 | DEPTH: 11] (Pre-PQ) Going Recursive(3) on pq | p = 15 ; q = 15
+| | | | | | | | | | | 
+| | | | | | | | | | | [SPAWN NODE-ID 11] Entered Karatsuba With num_a = 15 ; num_b = 15
+| | | | | | | | | | | | [NODE-ID 11 | DEPTH: 12] Created Clones: cln_a: 15 ; cln_b = 15
+| | | | | | | | | | | | [NODE-ID 11 | DEPTH: 12] (Pre-AC) Going Recursive(12) on ac | a = 1 ; c = 1
+| | | | | | | | | | | | 
+| | | | | | | | | | | | [SPAWN NODE-ID 12] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | [NODE-ID 12 | DEPTH: 13] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | Node 12 Returned as Base Case 1
+| | | | | | | | | | | | [NODE-ID 11 | DEPTH: 13] (AC Performed) Received Return from Karatsuba(12) | a = 1 ; c = 1 | ac: 1
+| | | | | | | | | | | | [NODE-ID 11 | DEPTH: 13] (Pre-BD) Going Recursive(12) on bd| b = 5 ; d = 5
+| | | | | | | | | | | | | 
+| | | | | | | | | | | | | [SPAWN NODE-ID 13] Entered Karatsuba With num_a = 5 ; num_b = 5
+| | | | | | | | | | | | | | [NODE-ID 13 | DEPTH: 14] Created Clones: cln_a: 5 ; cln_b = 5
+| | | | | | | | | | | | | Node 13 Returned as Base Case 25
+| | | | | | | | | | | | [NODE-ID 11 | DEPTH: 14] (BD Performed) Received Return from Karatsuba(12) | b = 5 ; d = 5 | bd: 25
+| | | | | | | | | | | | [NODE-ID 11 | DEPTH: 14] (Pre-PQ) Going Recursive(12) on pq | p = 6 ; q = 6
+| | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | [SPAWN NODE-ID 14] Entered Karatsuba With num_a = 6 ; num_b = 6
+| | | | | | | | | | | | | | | [NODE-ID 14 | DEPTH: 15] Created Clones: cln_a: 6 ; cln_b = 6
+| | | | | | | | | | | | | | Node 14 Returned as Base Case 36
+| | | | | | | | | | | | [NODE-ID 11 | DEPTH: 15] (PQ Performed) Received Return from Karatsuba(12) | p = 6 ; q = 6 | pq: 36
+padFactor (2), padFactor/2 (1) ---- 01 * 10^2 + 10 * 10^1 + 25
+ac*10ˆ2 = 0100 | adbc*10ˆ1 = 100
+| | | | | Node 11 Returned 0225(4)
+| | | [NODE-ID 2 | DEPTH: 15] (PQ Performed) Received Return from Karatsuba(3) | p = 15 ; q = 15 | pq: 225
+padFactor (2), padFactor/2 (1) ---- 144 * 10^2 + 72 * 10^1 + 009
+ac*10ˆ2 = 14400 | adbc*10ˆ1 = 720
+Node 2 Returned 15129(5)
+| | [NODE-ID 1 | DEPTH: 15] (AC Performed) Received Return from Karatsuba(2) | a = 123 ; c = 123 | ac: 15129
+| | [NODE-ID 1 | DEPTH: 15] (Pre-BD) Going Recursive(2) on bd| b = 456 ; d = 456
+| | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | [SPAWN NODE-ID 15] Entered Karatsuba With num_a = 456 ; num_b = 456
+| | | | | | | | | | | | | | | | [NODE-ID 15 | DEPTH: 16] Created Clones: cln_a: 456 ; cln_b = 456
+| | | | | | | | | | | | | | | | [NODE-ID 15 | DEPTH: 16] (Pre-AC) Going Recursive(16) on ac | a = 45 ; c = 45
+| | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | [SPAWN NODE-ID 16] Entered Karatsuba With num_a = 45 ; num_b = 45
+| | | | | | | | | | | | | | | | | [NODE-ID 16 | DEPTH: 17] Created Clones: cln_a: 45 ; cln_b = 45
+| | | | | | | | | | | | | | | | | [NODE-ID 16 | DEPTH: 17] (Pre-AC) Going Recursive(17) on ac | a = 4 ; c = 4
+| | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | [SPAWN NODE-ID 17] Entered Karatsuba With num_a = 4 ; num_b = 4
+| | | | | | | | | | | | | | | | | | [NODE-ID 17 | DEPTH: 18] Created Clones: cln_a: 4 ; cln_b = 4
+| | | | | | | | | | | | | | | | | Node 17 Returned as Base Case 16
+| | | | | | | | | | | | | | | | | [NODE-ID 16 | DEPTH: 18] (AC Performed) Received Return from Karatsuba(17) | a = 4 ; c = 4 | ac: 16
+| | | | | | | | | | | | | | | | | [NODE-ID 16 | DEPTH: 18] (Pre-BD) Going Recursive(17) on bd| b = 5 ; d = 5
+| | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 18] Entered Karatsuba With num_a = 5 ; num_b = 5
+| | | | | | | | | | | | | | | | | | | [NODE-ID 18 | DEPTH: 19] Created Clones: cln_a: 5 ; cln_b = 5
+| | | | | | | | | | | | | | | | | | Node 18 Returned as Base Case 25
+| | | | | | | | | | | | | | | | | [NODE-ID 16 | DEPTH: 19] (BD Performed) Received Return from Karatsuba(17) | b = 5 ; d = 5 | bd: 25
+| | | | | | | | | | | | | | | | | [NODE-ID 16 | DEPTH: 19] (Pre-PQ) Going Recursive(17) on pq | p = 9 ; q = 9
+| | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 19] Entered Karatsuba With num_a = 9 ; num_b = 9
+| | | | | | | | | | | | | | | | | | | | [NODE-ID 19 | DEPTH: 20] Created Clones: cln_a: 9 ; cln_b = 9
+| | | | | | | | | | | | | | | | | | | Node 19 Returned as Base Case 81
+| | | | | | | | | | | | | | | | | [NODE-ID 16 | DEPTH: 20] (PQ Performed) Received Return from Karatsuba(17) | p = 9 ; q = 9 | pq: 81
+padFactor (2), padFactor/2 (1) ---- 16 * 10^2 + 40 * 10^1 + 25
+ac*10ˆ2 = 1600 | adbc*10ˆ1 = 400
+| | | | | | | Node 16 Returned 2025(4)
+| | | | | | | | | | | | | | | | [NODE-ID 15 | DEPTH: 20] (AC Performed) Received Return from Karatsuba(16) | a = 45 ; c = 45 | ac: 2025
+| | | | | | | | | | | | | | | | [NODE-ID 15 | DEPTH: 20] (Pre-BD) Going Recursive(16) on bd| b = 06 ; d = 06
+| | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 20] Entered Karatsuba With num_a = 06 ; num_b = 06
+| | | | | | | | | | | | | | | | | | | | | [NODE-ID 20 | DEPTH: 21] Created Clones: cln_a: 06 ; cln_b = 06
+| | | | | | | | | | | | | | | | | | | | | [NODE-ID 20 | DEPTH: 21] (Pre-AC) Going Recursive(21) on ac | a = 0 ; c = 0
+| | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 21] Entered Karatsuba With num_a = 0 ; num_b = 0
+| | | | | | | | | | | | | | | | | | | | | | [NODE-ID 21 | DEPTH: 22] Created Clones: cln_a: 0 ; cln_b = 0
+| | | | | | | | | | | | | | | | | | | | | Node 21 Returned as Base Case 0
+| | | | | | | | | | | | | | | | | | | | | [NODE-ID 20 | DEPTH: 22] (AC Performed) Received Return from Karatsuba(21) | a = 0 ; c = 0 | ac: 0
+| | | | | | | | | | | | | | | | | | | | | [NODE-ID 20 | DEPTH: 22] (Pre-BD) Going Recursive(21) on bd| b = 6 ; d = 6
+| | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 22] Entered Karatsuba With num_a = 6 ; num_b = 6
+| | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 22 | DEPTH: 23] Created Clones: cln_a: 6 ; cln_b = 6
+| | | | | | | | | | | | | | | | | | | | | | Node 22 Returned as Base Case 36
+| | | | | | | | | | | | | | | | | | | | | [NODE-ID 20 | DEPTH: 23] (BD Performed) Received Return from Karatsuba(21) | b = 6 ; d = 6 | bd: 36
+| | | | | | | | | | | | | | | | | | | | | [NODE-ID 20 | DEPTH: 23] (Pre-PQ) Going Recursive(21) on pq | p = 6 ; q = 6
+| | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 23] Entered Karatsuba With num_a = 6 ; num_b = 6
+| | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 23 | DEPTH: 24] Created Clones: cln_a: 6 ; cln_b = 6
+| | | | | | | | | | | | | | | | | | | | | | | Node 23 Returned as Base Case 36
+| | | | | | | | | | | | | | | | | | | | | [NODE-ID 20 | DEPTH: 24] (PQ Performed) Received Return from Karatsuba(21) | p = 6 ; q = 6 | pq: 36
+padFactor (2), padFactor/2 (1) ---- 00 * 10^2 +  * 10^1 + 36
+ac*10ˆ2 = 0000 | adbc*10ˆ1 = 0
+| | | | | | | | | Node 20 Returned 0036(4)
+| | | | | | | | | | | | | | | | [NODE-ID 15 | DEPTH: 24] (BD Performed) Received Return from Karatsuba(16) | b = 06 ; d = 06 | bd: 36
+| | | | | | | | | | | | | | | | [NODE-ID 15 | DEPTH: 24] (Pre-PQ) Going Recursive(16) on pq | p = 51 ; q = 51
+| | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 24] Entered Karatsuba With num_a = 51 ; num_b = 51
+| | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 24 | DEPTH: 25] Created Clones: cln_a: 51 ; cln_b = 51
+| | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 24 | DEPTH: 25] (Pre-AC) Going Recursive(25) on ac | a = 5 ; c = 5
+| | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 25] Entered Karatsuba With num_a = 5 ; num_b = 5
+| | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 25 | DEPTH: 26] Created Clones: cln_a: 5 ; cln_b = 5
+| | | | | | | | | | | | | | | | | | | | | | | | | Node 25 Returned as Base Case 25
+| | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 24 | DEPTH: 26] (AC Performed) Received Return from Karatsuba(25) | a = 5 ; c = 5 | ac: 25
+| | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 24 | DEPTH: 26] (Pre-BD) Going Recursive(25) on bd| b = 1 ; d = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 26] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 26 | DEPTH: 27] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | Node 26 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 24 | DEPTH: 27] (BD Performed) Received Return from Karatsuba(25) | b = 1 ; d = 1 | bd: 1
+| | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 24 | DEPTH: 27] (Pre-PQ) Going Recursive(25) on pq | p = 6 ; q = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 27] Entered Karatsuba With num_a = 6 ; num_b = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 27 | DEPTH: 28] Created Clones: cln_a: 6 ; cln_b = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | Node 27 Returned as Base Case 36
+| | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 24 | DEPTH: 28] (PQ Performed) Received Return from Karatsuba(25) | p = 6 ; q = 6 | pq: 36
+padFactor (2), padFactor/2 (1) ---- 25 * 10^2 + 10 * 10^1 + 01
+ac*10ˆ2 = 2500 | adbc*10ˆ1 = 100
+| | | | | | | | | | | Node 24 Returned 2601(4)
+| | | | | | | | | | | | | | | | [NODE-ID 15 | DEPTH: 28] (PQ Performed) Received Return from Karatsuba(16) | p = 51 ; q = 51 | pq: 2601
+padFactor (2), padFactor/2 (1) ---- 2025 * 10^2 + 540 * 10^1 + 0036
+ac*10ˆ2 = 202500 | adbc*10ˆ1 = 5400
+| | | | | | | Node 15 Returned 207936(6)
+| | [NODE-ID 1 | DEPTH: 28] (BD Performed) Received Return from Karatsuba(2) | b = 456 ; d = 456 | bd: 207936
+| | [NODE-ID 1 | DEPTH: 28] (Pre-PQ) Going Recursive(2) on pq | p = 579 ; q = 579
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 28] Entered Karatsuba With num_a = 579 ; num_b = 579
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 28 | DEPTH: 29] Created Clones: cln_a: 579 ; cln_b = 579
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 28 | DEPTH: 29] (Pre-AC) Going Recursive(29) on ac | a = 57 ; c = 57
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 29] Entered Karatsuba With num_a = 57 ; num_b = 57
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 29 | DEPTH: 30] Created Clones: cln_a: 57 ; cln_b = 57
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 29 | DEPTH: 30] (Pre-AC) Going Recursive(30) on ac | a = 5 ; c = 5
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 30] Entered Karatsuba With num_a = 5 ; num_b = 5
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 30 | DEPTH: 31] Created Clones: cln_a: 5 ; cln_b = 5
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 30 Returned as Base Case 25
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 29 | DEPTH: 31] (AC Performed) Received Return from Karatsuba(30) | a = 5 ; c = 5 | ac: 25
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 29 | DEPTH: 31] (Pre-BD) Going Recursive(30) on bd| b = 7 ; d = 7
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 31] Entered Karatsuba With num_a = 7 ; num_b = 7
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 31 | DEPTH: 32] Created Clones: cln_a: 7 ; cln_b = 7
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 31 Returned as Base Case 49
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 29 | DEPTH: 32] (BD Performed) Received Return from Karatsuba(30) | b = 7 ; d = 7 | bd: 49
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 29 | DEPTH: 32] (Pre-PQ) Going Recursive(30) on pq | p = 12 ; q = 12
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 32] Entered Karatsuba With num_a = 12 ; num_b = 12
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 32 | DEPTH: 33] Created Clones: cln_a: 12 ; cln_b = 12
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 32 | DEPTH: 33] (Pre-AC) Going Recursive(33) on ac | a = 1 ; c = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 33] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 33 | DEPTH: 34] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 33 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 32 | DEPTH: 34] (AC Performed) Received Return from Karatsuba(33) | a = 1 ; c = 1 | ac: 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 32 | DEPTH: 34] (Pre-BD) Going Recursive(33) on bd| b = 2 ; d = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 34] Entered Karatsuba With num_a = 2 ; num_b = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 34 | DEPTH: 35] Created Clones: cln_a: 2 ; cln_b = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 34 Returned as Base Case 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 32 | DEPTH: 35] (BD Performed) Received Return from Karatsuba(33) | b = 2 ; d = 2 | bd: 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 32 | DEPTH: 35] (Pre-PQ) Going Recursive(33) on pq | p = 3 ; q = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 35] Entered Karatsuba With num_a = 3 ; num_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 35 | DEPTH: 36] Created Clones: cln_a: 3 ; cln_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 35 Returned as Base Case 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 32 | DEPTH: 36] (PQ Performed) Received Return from Karatsuba(33) | p = 3 ; q = 3 | pq: 9
+padFactor (2), padFactor/2 (1) ---- 1 * 10^2 + 4 * 10^1 + 4
+ac*10ˆ2 = 100 | adbc*10ˆ1 = 40
+| | | | | | | | | | | | | | | Node 32 Returned 144(3)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 29 | DEPTH: 36] (PQ Performed) Received Return from Karatsuba(30) | p = 12 ; q = 12 | pq: 144
+padFactor (2), padFactor/2 (1) ---- 25 * 10^2 + 70 * 10^1 + 49
+ac*10ˆ2 = 2500 | adbc*10ˆ1 = 700
+| | | | | | | | | | | | | | Node 29 Returned 3249(4)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 28 | DEPTH: 36] (AC Performed) Received Return from Karatsuba(29) | a = 57 ; c = 57 | ac: 3249
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 28 | DEPTH: 36] (Pre-BD) Going Recursive(29) on bd| b = 09 ; d = 09
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 36] Entered Karatsuba With num_a = 09 ; num_b = 09
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 36 | DEPTH: 37] Created Clones: cln_a: 09 ; cln_b = 09
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 36 | DEPTH: 37] (Pre-AC) Going Recursive(37) on ac | a = 0 ; c = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 37] Entered Karatsuba With num_a = 0 ; num_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 37 | DEPTH: 38] Created Clones: cln_a: 0 ; cln_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 37 Returned as Base Case 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 36 | DEPTH: 38] (AC Performed) Received Return from Karatsuba(37) | a = 0 ; c = 0 | ac: 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 36 | DEPTH: 38] (Pre-BD) Going Recursive(37) on bd| b = 9 ; d = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 38] Entered Karatsuba With num_a = 9 ; num_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 38 | DEPTH: 39] Created Clones: cln_a: 9 ; cln_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 38 Returned as Base Case 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 36 | DEPTH: 39] (BD Performed) Received Return from Karatsuba(37) | b = 9 ; d = 9 | bd: 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 36 | DEPTH: 39] (Pre-PQ) Going Recursive(37) on pq | p = 9 ; q = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 39] Entered Karatsuba With num_a = 9 ; num_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 39 | DEPTH: 40] Created Clones: cln_a: 9 ; cln_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 39 Returned as Base Case 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 36 | DEPTH: 40] (PQ Performed) Received Return from Karatsuba(37) | p = 9 ; q = 9 | pq: 81
+padFactor (2), padFactor/2 (1) ---- 00 * 10^2 +  * 10^1 + 81
+ac*10ˆ2 = 0000 | adbc*10ˆ1 = 0
+| | | | | | | | | | | | | | | | | Node 36 Returned 0081(4)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 28 | DEPTH: 40] (BD Performed) Received Return from Karatsuba(29) | b = 09 ; d = 09 | bd: 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 28 | DEPTH: 40] (Pre-PQ) Going Recursive(29) on pq | p = 66 ; q = 66
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 40] Entered Karatsuba With num_a = 66 ; num_b = 66
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 40 | DEPTH: 41] Created Clones: cln_a: 66 ; cln_b = 66
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 40 | DEPTH: 41] (Pre-AC) Going Recursive(41) on ac | a = 6 ; c = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 41] Entered Karatsuba With num_a = 6 ; num_b = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 41 | DEPTH: 42] Created Clones: cln_a: 6 ; cln_b = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 41 Returned as Base Case 36
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 40 | DEPTH: 42] (AC Performed) Received Return from Karatsuba(41) | a = 6 ; c = 6 | ac: 36
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 40 | DEPTH: 42] (Pre-BD) Going Recursive(41) on bd| b = 6 ; d = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 42] Entered Karatsuba With num_a = 6 ; num_b = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 42 | DEPTH: 43] Created Clones: cln_a: 6 ; cln_b = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 42 Returned as Base Case 36
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 40 | DEPTH: 43] (BD Performed) Received Return from Karatsuba(41) | b = 6 ; d = 6 | bd: 36
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 40 | DEPTH: 43] (Pre-PQ) Going Recursive(41) on pq | p = 12 ; q = 12
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 43] Entered Karatsuba With num_a = 12 ; num_b = 12
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 43 | DEPTH: 44] Created Clones: cln_a: 12 ; cln_b = 12
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 43 | DEPTH: 44] (Pre-AC) Going Recursive(44) on ac | a = 1 ; c = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 44] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 44 | DEPTH: 45] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 44 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 43 | DEPTH: 45] (AC Performed) Received Return from Karatsuba(44) | a = 1 ; c = 1 | ac: 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 43 | DEPTH: 45] (Pre-BD) Going Recursive(44) on bd| b = 2 ; d = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 45] Entered Karatsuba With num_a = 2 ; num_b = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 45 | DEPTH: 46] Created Clones: cln_a: 2 ; cln_b = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 45 Returned as Base Case 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 43 | DEPTH: 46] (BD Performed) Received Return from Karatsuba(44) | b = 2 ; d = 2 | bd: 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 43 | DEPTH: 46] (Pre-PQ) Going Recursive(44) on pq | p = 3 ; q = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 46] Entered Karatsuba With num_a = 3 ; num_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 46 | DEPTH: 47] Created Clones: cln_a: 3 ; cln_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 46 Returned as Base Case 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 43 | DEPTH: 47] (PQ Performed) Received Return from Karatsuba(44) | p = 3 ; q = 3 | pq: 9
+padFactor (2), padFactor/2 (1) ---- 1 * 10^2 + 4 * 10^1 + 4
+ac*10ˆ2 = 100 | adbc*10ˆ1 = 40
+| | | | | | | | | | | | | | | | | | | | | Node 43 Returned 144(3)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 40 | DEPTH: 47] (PQ Performed) Received Return from Karatsuba(41) | p = 12 ; q = 12 | pq: 144
+padFactor (2), padFactor/2 (1) ---- 36 * 10^2 + 72 * 10^1 + 36
+ac*10ˆ2 = 3600 | adbc*10ˆ1 = 720
+| | | | | | | | | | | | | | | | | | | Node 40 Returned 4356(4)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 28 | DEPTH: 47] (PQ Performed) Received Return from Karatsuba(29) | p = 66 ; q = 66 | pq: 4356
+padFactor (2), padFactor/2 (1) ---- 3249 * 10^2 + 1026 * 10^1 + 0081
+ac*10ˆ2 = 324900 | adbc*10ˆ1 = 10260
+| | | | | | | | | | | | | Node 28 Returned 335241(6)
+| | [NODE-ID 1 | DEPTH: 47] (PQ Performed) Received Return from Karatsuba(2) | p = 579 ; q = 579 | pq: 335241
+padFactor (6), padFactor/2 (3) ---- 015129 * 10^6 + 112176 * 10^3 + 207936
+ac*10ˆ6 = 015129000000 | adbc*10ˆ3 = 112176000
+Node 1 Returned 015241383936(12)
+| [NODE-ID 0 | DEPTH: 47] (AC Performed) Received Return from Karatsuba(1) | a = 123456 ; c = 123456 | ac: 15241383936
+| [NODE-ID 0 | DEPTH: 47] (Pre-BD) Going Recursive(1) on bd| b = 789012 ; d = 789012
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 47] Entered Karatsuba With num_a = 789012 ; num_b = 789012
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 47 | DEPTH: 48] Created Clones: cln_a: 789012 ; cln_b = 789012
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 47 | DEPTH: 48] (Pre-AC) Going Recursive(48) on ac | a = 789 ; c = 789
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 48] Entered Karatsuba With num_a = 789 ; num_b = 789
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 48 | DEPTH: 49] Created Clones: cln_a: 789 ; cln_b = 789
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 48 | DEPTH: 49] (Pre-AC) Going Recursive(49) on ac | a = 78 ; c = 78
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 49] Entered Karatsuba With num_a = 78 ; num_b = 78
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 49 | DEPTH: 50] Created Clones: cln_a: 78 ; cln_b = 78
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 49 | DEPTH: 50] (Pre-AC) Going Recursive(50) on ac | a = 7 ; c = 7
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 50] Entered Karatsuba With num_a = 7 ; num_b = 7
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 50 | DEPTH: 51] Created Clones: cln_a: 7 ; cln_b = 7
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 50 Returned as Base Case 49
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 49 | DEPTH: 51] (AC Performed) Received Return from Karatsuba(50) | a = 7 ; c = 7 | ac: 49
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 49 | DEPTH: 51] (Pre-BD) Going Recursive(50) on bd| b = 8 ; d = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 51] Entered Karatsuba With num_a = 8 ; num_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 51 | DEPTH: 52] Created Clones: cln_a: 8 ; cln_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 51 Returned as Base Case 64
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 49 | DEPTH: 52] (BD Performed) Received Return from Karatsuba(50) | b = 8 ; d = 8 | bd: 64
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 49 | DEPTH: 52] (Pre-PQ) Going Recursive(50) on pq | p = 15 ; q = 15
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 52] Entered Karatsuba With num_a = 15 ; num_b = 15
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 52 | DEPTH: 53] Created Clones: cln_a: 15 ; cln_b = 15
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 52 | DEPTH: 53] (Pre-AC) Going Recursive(53) on ac | a = 1 ; c = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 53] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 53 | DEPTH: 54] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 53 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 52 | DEPTH: 54] (AC Performed) Received Return from Karatsuba(53) | a = 1 ; c = 1 | ac: 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 52 | DEPTH: 54] (Pre-BD) Going Recursive(53) on bd| b = 5 ; d = 5
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 54] Entered Karatsuba With num_a = 5 ; num_b = 5
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 54 | DEPTH: 55] Created Clones: cln_a: 5 ; cln_b = 5
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 54 Returned as Base Case 25
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 52 | DEPTH: 55] (BD Performed) Received Return from Karatsuba(53) | b = 5 ; d = 5 | bd: 25
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 52 | DEPTH: 55] (Pre-PQ) Going Recursive(53) on pq | p = 6 ; q = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 55] Entered Karatsuba With num_a = 6 ; num_b = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 55 | DEPTH: 56] Created Clones: cln_a: 6 ; cln_b = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 55 Returned as Base Case 36
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 52 | DEPTH: 56] (PQ Performed) Received Return from Karatsuba(53) | p = 6 ; q = 6 | pq: 36
+padFactor (2), padFactor/2 (1) ---- 01 * 10^2 + 10 * 10^1 + 25
+ac*10ˆ2 = 0100 | adbc*10ˆ1 = 100
+| | | | | | | | | | | | | | | | | | | | | | | | | Node 52 Returned 0225(4)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 49 | DEPTH: 56] (PQ Performed) Received Return from Karatsuba(50) | p = 15 ; q = 15 | pq: 225
+padFactor (2), padFactor/2 (1) ---- 49 * 10^2 + 112 * 10^1 + 64
+ac*10ˆ2 = 4900 | adbc*10ˆ1 = 1120
+| | | | | | | | | | | | | | | | | | | | | | | | Node 49 Returned 6084(4)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 48 | DEPTH: 56] (AC Performed) Received Return from Karatsuba(49) | a = 78 ; c = 78 | ac: 6084
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 48 | DEPTH: 56] (Pre-BD) Going Recursive(49) on bd| b = 09 ; d = 09
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 56] Entered Karatsuba With num_a = 09 ; num_b = 09
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 56 | DEPTH: 57] Created Clones: cln_a: 09 ; cln_b = 09
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 56 | DEPTH: 57] (Pre-AC) Going Recursive(57) on ac | a = 0 ; c = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 57] Entered Karatsuba With num_a = 0 ; num_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 57 | DEPTH: 58] Created Clones: cln_a: 0 ; cln_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 57 Returned as Base Case 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 56 | DEPTH: 58] (AC Performed) Received Return from Karatsuba(57) | a = 0 ; c = 0 | ac: 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 56 | DEPTH: 58] (Pre-BD) Going Recursive(57) on bd| b = 9 ; d = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 58] Entered Karatsuba With num_a = 9 ; num_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 58 | DEPTH: 59] Created Clones: cln_a: 9 ; cln_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 58 Returned as Base Case 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 56 | DEPTH: 59] (BD Performed) Received Return from Karatsuba(57) | b = 9 ; d = 9 | bd: 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 56 | DEPTH: 59] (Pre-PQ) Going Recursive(57) on pq | p = 9 ; q = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 59] Entered Karatsuba With num_a = 9 ; num_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 59 | DEPTH: 60] Created Clones: cln_a: 9 ; cln_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 59 Returned as Base Case 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 56 | DEPTH: 60] (PQ Performed) Received Return from Karatsuba(57) | p = 9 ; q = 9 | pq: 81
+padFactor (2), padFactor/2 (1) ---- 00 * 10^2 +  * 10^1 + 81
+ac*10ˆ2 = 0000 | adbc*10ˆ1 = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | Node 56 Returned 0081(4)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 48 | DEPTH: 60] (BD Performed) Received Return from Karatsuba(49) | b = 09 ; d = 09 | bd: 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 48 | DEPTH: 60] (Pre-PQ) Going Recursive(49) on pq | p = 87 ; q = 87
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 60] Entered Karatsuba With num_a = 87 ; num_b = 87
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 60 | DEPTH: 61] Created Clones: cln_a: 87 ; cln_b = 87
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 60 | DEPTH: 61] (Pre-AC) Going Recursive(61) on ac | a = 8 ; c = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 61] Entered Karatsuba With num_a = 8 ; num_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 61 | DEPTH: 62] Created Clones: cln_a: 8 ; cln_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 61 Returned as Base Case 64
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 60 | DEPTH: 62] (AC Performed) Received Return from Karatsuba(61) | a = 8 ; c = 8 | ac: 64
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 60 | DEPTH: 62] (Pre-BD) Going Recursive(61) on bd| b = 7 ; d = 7
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 62] Entered Karatsuba With num_a = 7 ; num_b = 7
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 62 | DEPTH: 63] Created Clones: cln_a: 7 ; cln_b = 7
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 62 Returned as Base Case 49
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 60 | DEPTH: 63] (BD Performed) Received Return from Karatsuba(61) | b = 7 ; d = 7 | bd: 49
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 60 | DEPTH: 63] (Pre-PQ) Going Recursive(61) on pq | p = 15 ; q = 15
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 63] Entered Karatsuba With num_a = 15 ; num_b = 15
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 63 | DEPTH: 64] Created Clones: cln_a: 15 ; cln_b = 15
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 63 | DEPTH: 64] (Pre-AC) Going Recursive(64) on ac | a = 1 ; c = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 64] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 64 | DEPTH: 65] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 64 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 63 | DEPTH: 65] (AC Performed) Received Return from Karatsuba(64) | a = 1 ; c = 1 | ac: 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 63 | DEPTH: 65] (Pre-BD) Going Recursive(64) on bd| b = 5 ; d = 5
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 65] Entered Karatsuba With num_a = 5 ; num_b = 5
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 65 | DEPTH: 66] Created Clones: cln_a: 5 ; cln_b = 5
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 65 Returned as Base Case 25
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 63 | DEPTH: 66] (BD Performed) Received Return from Karatsuba(64) | b = 5 ; d = 5 | bd: 25
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 63 | DEPTH: 66] (Pre-PQ) Going Recursive(64) on pq | p = 6 ; q = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 66] Entered Karatsuba With num_a = 6 ; num_b = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 66 | DEPTH: 67] Created Clones: cln_a: 6 ; cln_b = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 66 Returned as Base Case 36
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 63 | DEPTH: 67] (PQ Performed) Received Return from Karatsuba(64) | p = 6 ; q = 6 | pq: 36
+padFactor (2), padFactor/2 (1) ---- 01 * 10^2 + 10 * 10^1 + 25
+ac*10ˆ2 = 0100 | adbc*10ˆ1 = 100
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 63 Returned 0225(4)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 60 | DEPTH: 67] (PQ Performed) Received Return from Karatsuba(61) | p = 15 ; q = 15 | pq: 225
+padFactor (2), padFactor/2 (1) ---- 64 * 10^2 + 112 * 10^1 + 49
+ac*10ˆ2 = 6400 | adbc*10ˆ1 = 1120
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 60 Returned 7569(4)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 48 | DEPTH: 67] (PQ Performed) Received Return from Karatsuba(49) | p = 87 ; q = 87 | pq: 7569
+padFactor (2), padFactor/2 (1) ---- 6084 * 10^2 + 1404 * 10^1 + 0081
+ac*10ˆ2 = 608400 | adbc*10ˆ1 = 14040
+| | | | | | | | | | | | | | | | | | | | | | | Node 48 Returned 622521(6)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 47 | DEPTH: 67] (AC Performed) Received Return from Karatsuba(48) | a = 789 ; c = 789 | ac: 622521
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 47 | DEPTH: 67] (Pre-BD) Going Recursive(48) on bd| b = 012 ; d = 012
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 67] Entered Karatsuba With num_a = 012 ; num_b = 012
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 67 | DEPTH: 68] Created Clones: cln_a: 012 ; cln_b = 012
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 67 | DEPTH: 68] (Pre-AC) Going Recursive(68) on ac | a = 01 ; c = 01
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 68] Entered Karatsuba With num_a = 01 ; num_b = 01
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 68 | DEPTH: 69] Created Clones: cln_a: 01 ; cln_b = 01
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 68 | DEPTH: 69] (Pre-AC) Going Recursive(69) on ac | a = 0 ; c = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 69] Entered Karatsuba With num_a = 0 ; num_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 69 | DEPTH: 70] Created Clones: cln_a: 0 ; cln_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 69 Returned as Base Case 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 68 | DEPTH: 70] (AC Performed) Received Return from Karatsuba(69) | a = 0 ; c = 0 | ac: 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 68 | DEPTH: 70] (Pre-BD) Going Recursive(69) on bd| b = 1 ; d = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 70] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 70 | DEPTH: 71] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 70 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 68 | DEPTH: 71] (BD Performed) Received Return from Karatsuba(69) | b = 1 ; d = 1 | bd: 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 68 | DEPTH: 71] (Pre-PQ) Going Recursive(69) on pq | p = 1 ; q = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 71] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 71 | DEPTH: 72] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 71 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 68 | DEPTH: 72] (PQ Performed) Received Return from Karatsuba(69) | p = 1 ; q = 1 | pq: 1
+padFactor (2), padFactor/2 (1) ---- 0 * 10^2 +  * 10^1 + 1
+ac*10ˆ2 = 000 | adbc*10ˆ1 = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 68 Returned 001(3)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 67 | DEPTH: 72] (AC Performed) Received Return from Karatsuba(68) | a = 01 ; c = 01 | ac: 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 67 | DEPTH: 72] (Pre-BD) Going Recursive(68) on bd| b = 02 ; d = 02
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 72] Entered Karatsuba With num_a = 02 ; num_b = 02
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 72 | DEPTH: 73] Created Clones: cln_a: 02 ; cln_b = 02
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 72 | DEPTH: 73] (Pre-AC) Going Recursive(73) on ac | a = 0 ; c = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 73] Entered Karatsuba With num_a = 0 ; num_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 73 | DEPTH: 74] Created Clones: cln_a: 0 ; cln_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 73 Returned as Base Case 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 72 | DEPTH: 74] (AC Performed) Received Return from Karatsuba(73) | a = 0 ; c = 0 | ac: 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 72 | DEPTH: 74] (Pre-BD) Going Recursive(73) on bd| b = 2 ; d = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 74] Entered Karatsuba With num_a = 2 ; num_b = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 74 | DEPTH: 75] Created Clones: cln_a: 2 ; cln_b = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 74 Returned as Base Case 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 72 | DEPTH: 75] (BD Performed) Received Return from Karatsuba(73) | b = 2 ; d = 2 | bd: 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 72 | DEPTH: 75] (Pre-PQ) Going Recursive(73) on pq | p = 2 ; q = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 75] Entered Karatsuba With num_a = 2 ; num_b = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 75 | DEPTH: 76] Created Clones: cln_a: 2 ; cln_b = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 75 Returned as Base Case 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 72 | DEPTH: 76] (PQ Performed) Received Return from Karatsuba(73) | p = 2 ; q = 2 | pq: 4
+padFactor (2), padFactor/2 (1) ---- 0 * 10^2 +  * 10^1 + 4
+ac*10ˆ2 = 000 | adbc*10ˆ1 = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 72 Returned 004(3)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 67 | DEPTH: 76] (BD Performed) Received Return from Karatsuba(68) | b = 02 ; d = 02 | bd: 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 67 | DEPTH: 76] (Pre-PQ) Going Recursive(68) on pq | p = 03 ; q = 03
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 76] Entered Karatsuba With num_a = 03 ; num_b = 03
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 76 | DEPTH: 77] Created Clones: cln_a: 03 ; cln_b = 03
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 76 | DEPTH: 77] (Pre-AC) Going Recursive(77) on ac | a = 0 ; c = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 77] Entered Karatsuba With num_a = 0 ; num_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 77 | DEPTH: 78] Created Clones: cln_a: 0 ; cln_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 77 Returned as Base Case 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 76 | DEPTH: 78] (AC Performed) Received Return from Karatsuba(77) | a = 0 ; c = 0 | ac: 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 76 | DEPTH: 78] (Pre-BD) Going Recursive(77) on bd| b = 3 ; d = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 78] Entered Karatsuba With num_a = 3 ; num_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 78 | DEPTH: 79] Created Clones: cln_a: 3 ; cln_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 78 Returned as Base Case 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 76 | DEPTH: 79] (BD Performed) Received Return from Karatsuba(77) | b = 3 ; d = 3 | bd: 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 76 | DEPTH: 79] (Pre-PQ) Going Recursive(77) on pq | p = 3 ; q = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 79] Entered Karatsuba With num_a = 3 ; num_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 79 | DEPTH: 80] Created Clones: cln_a: 3 ; cln_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 79 Returned as Base Case 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 76 | DEPTH: 80] (PQ Performed) Received Return from Karatsuba(77) | p = 3 ; q = 3 | pq: 9
+padFactor (2), padFactor/2 (1) ---- 0 * 10^2 +  * 10^1 + 9
+ac*10ˆ2 = 000 | adbc*10ˆ1 = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 76 Returned 009(3)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 67 | DEPTH: 80] (PQ Performed) Received Return from Karatsuba(68) | p = 03 ; q = 03 | pq: 9
+padFactor (2), padFactor/2 (1) ---- 1 * 10^2 + 4 * 10^1 + 4
+ac*10ˆ2 = 100 | adbc*10ˆ1 = 40
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 67 Returned 144(3)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 47 | DEPTH: 80] (BD Performed) Received Return from Karatsuba(48) | b = 012 ; d = 012 | bd: 144
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 47 | DEPTH: 80] (Pre-PQ) Going Recursive(48) on pq | p = 801 ; q = 801
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 80] Entered Karatsuba With num_a = 801 ; num_b = 801
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 80 | DEPTH: 81] Created Clones: cln_a: 801 ; cln_b = 801
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 80 | DEPTH: 81] (Pre-AC) Going Recursive(81) on ac | a = 80 ; c = 80
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 81] Entered Karatsuba With num_a = 80 ; num_b = 80
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 81 | DEPTH: 82] Created Clones: cln_a: 80 ; cln_b = 80
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 81 | DEPTH: 82] (Pre-AC) Going Recursive(82) on ac | a = 8 ; c = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 82] Entered Karatsuba With num_a = 8 ; num_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 82 | DEPTH: 83] Created Clones: cln_a: 8 ; cln_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 82 Returned as Base Case 64
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 81 | DEPTH: 83] (AC Performed) Received Return from Karatsuba(82) | a = 8 ; c = 8 | ac: 64
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 81 | DEPTH: 83] (Pre-BD) Going Recursive(82) on bd| b = 0 ; d = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 83] Entered Karatsuba With num_a = 0 ; num_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 83 | DEPTH: 84] Created Clones: cln_a: 0 ; cln_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 83 Returned as Base Case 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 81 | DEPTH: 84] (BD Performed) Received Return from Karatsuba(82) | b = 0 ; d = 0 | bd: 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 81 | DEPTH: 84] (Pre-PQ) Going Recursive(82) on pq | p = 8 ; q = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 84] Entered Karatsuba With num_a = 8 ; num_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 84 | DEPTH: 85] Created Clones: cln_a: 8 ; cln_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 84 Returned as Base Case 64
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 81 | DEPTH: 85] (PQ Performed) Received Return from Karatsuba(82) | p = 8 ; q = 8 | pq: 64
+padFactor (2), padFactor/2 (1) ---- 64 * 10^2 +  * 10^1 + 00
+ac*10ˆ2 = 6400 | adbc*10ˆ1 = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 81 Returned 6400(4)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 80 | DEPTH: 85] (AC Performed) Received Return from Karatsuba(81) | a = 80 ; c = 80 | ac: 6400
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 80 | DEPTH: 85] (Pre-BD) Going Recursive(81) on bd| b = 01 ; d = 01
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 85] Entered Karatsuba With num_a = 01 ; num_b = 01
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 85 | DEPTH: 86] Created Clones: cln_a: 01 ; cln_b = 01
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 85 | DEPTH: 86] (Pre-AC) Going Recursive(86) on ac | a = 0 ; c = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 86] Entered Karatsuba With num_a = 0 ; num_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 86 | DEPTH: 87] Created Clones: cln_a: 0 ; cln_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 86 Returned as Base Case 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 85 | DEPTH: 87] (AC Performed) Received Return from Karatsuba(86) | a = 0 ; c = 0 | ac: 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 85 | DEPTH: 87] (Pre-BD) Going Recursive(86) on bd| b = 1 ; d = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 87] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 87 | DEPTH: 88] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 87 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 85 | DEPTH: 88] (BD Performed) Received Return from Karatsuba(86) | b = 1 ; d = 1 | bd: 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 85 | DEPTH: 88] (Pre-PQ) Going Recursive(86) on pq | p = 1 ; q = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 88] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 88 | DEPTH: 89] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 88 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 85 | DEPTH: 89] (PQ Performed) Received Return from Karatsuba(86) | p = 1 ; q = 1 | pq: 1
+padFactor (2), padFactor/2 (1) ---- 0 * 10^2 +  * 10^1 + 1
+ac*10ˆ2 = 000 | adbc*10ˆ1 = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 85 Returned 001(3)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 80 | DEPTH: 89] (BD Performed) Received Return from Karatsuba(81) | b = 01 ; d = 01 | bd: 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 80 | DEPTH: 89] (Pre-PQ) Going Recursive(81) on pq | p = 81 ; q = 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 89] Entered Karatsuba With num_a = 81 ; num_b = 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 89 | DEPTH: 90] Created Clones: cln_a: 81 ; cln_b = 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 89 | DEPTH: 90] (Pre-AC) Going Recursive(90) on ac | a = 8 ; c = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 90] Entered Karatsuba With num_a = 8 ; num_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 90 | DEPTH: 91] Created Clones: cln_a: 8 ; cln_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 90 Returned as Base Case 64
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 89 | DEPTH: 91] (AC Performed) Received Return from Karatsuba(90) | a = 8 ; c = 8 | ac: 64
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 89 | DEPTH: 91] (Pre-BD) Going Recursive(90) on bd| b = 1 ; d = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 91] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 91 | DEPTH: 92] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 91 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 89 | DEPTH: 92] (BD Performed) Received Return from Karatsuba(90) | b = 1 ; d = 1 | bd: 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 89 | DEPTH: 92] (Pre-PQ) Going Recursive(90) on pq | p = 9 ; q = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 92] Entered Karatsuba With num_a = 9 ; num_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 92 | DEPTH: 93] Created Clones: cln_a: 9 ; cln_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 92 Returned as Base Case 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 89 | DEPTH: 93] (PQ Performed) Received Return from Karatsuba(90) | p = 9 ; q = 9 | pq: 81
+padFactor (2), padFactor/2 (1) ---- 64 * 10^2 + 16 * 10^1 + 01
+ac*10ˆ2 = 6400 | adbc*10ˆ1 = 160
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 89 Returned 6561(4)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 80 | DEPTH: 93] (PQ Performed) Received Return from Karatsuba(81) | p = 81 ; q = 81 | pq: 6561
+padFactor (2), padFactor/2 (1) ---- 6400 * 10^2 + 160 * 10^1 + 0001
+ac*10ˆ2 = 640000 | adbc*10ˆ1 = 1600
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 80 Returned 641601(6)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 47 | DEPTH: 93] (PQ Performed) Received Return from Karatsuba(48) | p = 801 ; q = 801 | pq: 641601
+padFactor (6), padFactor/2 (3) ---- 622521 * 10^6 + 19/36 * 10^3 + 000144
+ac*10ˆ6 = 622521000000 | adbc*10ˆ3 = 19/36000
+| | | | | | | | | | | | | | | | | | | | | | | Node 47 Returned 622540/36144(12)
+| [NODE-ID 0 | DEPTH: 93] (BD Performed) Received Return from Karatsuba(1) | b = 789012 ; d = 789012 | bd: 622540/36144
+| [NODE-ID 0 | DEPTH: 93] (Pre-PQ) Going Recursive(1) on pq | p = 912468 ; q = 912468
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 93] Entered Karatsuba With num_a = 912468 ; num_b = 912468
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 93 | DEPTH: 94] Created Clones: cln_a: 912468 ; cln_b = 912468
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 93 | DEPTH: 94] (Pre-AC) Going Recursive(94) on ac | a = 912 ; c = 912
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 94] Entered Karatsuba With num_a = 912 ; num_b = 912
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 94 | DEPTH: 95] Created Clones: cln_a: 912 ; cln_b = 912
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 94 | DEPTH: 95] (Pre-AC) Going Recursive(95) on ac | a = 91 ; c = 91
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 95] Entered Karatsuba With num_a = 91 ; num_b = 91
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 95 | DEPTH: 96] Created Clones: cln_a: 91 ; cln_b = 91
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 95 | DEPTH: 96] (Pre-AC) Going Recursive(96) on ac | a = 9 ; c = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 96] Entered Karatsuba With num_a = 9 ; num_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 96 | DEPTH: 97] Created Clones: cln_a: 9 ; cln_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 96 Returned as Base Case 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 95 | DEPTH: 97] (AC Performed) Received Return from Karatsuba(96) | a = 9 ; c = 9 | ac: 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 95 | DEPTH: 97] (Pre-BD) Going Recursive(96) on bd| b = 1 ; d = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 97] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 97 | DEPTH: 98] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 97 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 95 | DEPTH: 98] (BD Performed) Received Return from Karatsuba(96) | b = 1 ; d = 1 | bd: 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 95 | DEPTH: 98] (Pre-PQ) Going Recursive(96) on pq | p = 10 ; q = 10
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 98] Entered Karatsuba With num_a = 10 ; num_b = 10
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 98 | DEPTH: 99] Created Clones: cln_a: 10 ; cln_b = 10
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 98 | DEPTH: 99] (Pre-AC) Going Recursive(99) on ac | a = 1 ; c = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 99] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 99 | DEPTH: 100] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 99 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 98 | DEPTH: 100] (AC Performed) Received Return from Karatsuba(99) | a = 1 ; c = 1 | ac: 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 98 | DEPTH: 100] (Pre-BD) Going Recursive(99) on bd| b = 0 ; d = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 100] Entered Karatsuba With num_a = 0 ; num_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 100 | DEPTH: 101] Created Clones: cln_a: 0 ; cln_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 100 Returned as Base Case 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 98 | DEPTH: 101] (BD Performed) Received Return from Karatsuba(99) | b = 0 ; d = 0 | bd: 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 98 | DEPTH: 101] (Pre-PQ) Going Recursive(99) on pq | p = 1 ; q = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 101] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 101 | DEPTH: 102] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 101 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 98 | DEPTH: 102] (PQ Performed) Received Return from Karatsuba(99) | p = 1 ; q = 1 | pq: 1
+padFactor (2), padFactor/2 (1) ---- 1 * 10^2 +  * 10^1 + 0
+ac*10ˆ2 = 100 | adbc*10ˆ1 = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 98 Returned 100(3)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 95 | DEPTH: 102] (PQ Performed) Received Return from Karatsuba(96) | p = 10 ; q = 10 | pq: 100
+padFactor (2), padFactor/2 (1) ---- 81 * 10^2 + 18 * 10^1 + 01
+ac*10ˆ2 = 8100 | adbc*10ˆ1 = 180
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 95 Returned 8281(4)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 94 | DEPTH: 102] (AC Performed) Received Return from Karatsuba(95) | a = 91 ; c = 91 | ac: 8281
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 94 | DEPTH: 102] (Pre-BD) Going Recursive(95) on bd| b = 02 ; d = 02
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 102] Entered Karatsuba With num_a = 02 ; num_b = 02
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 102 | DEPTH: 103] Created Clones: cln_a: 02 ; cln_b = 02
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 102 | DEPTH: 103] (Pre-AC) Going Recursive(103) on ac | a = 0 ; c = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 103] Entered Karatsuba With num_a = 0 ; num_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 103 | DEPTH: 104] Created Clones: cln_a: 0 ; cln_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 103 Returned as Base Case 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 102 | DEPTH: 104] (AC Performed) Received Return from Karatsuba(103) | a = 0 ; c = 0 | ac: 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 102 | DEPTH: 104] (Pre-BD) Going Recursive(103) on bd| b = 2 ; d = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 104] Entered Karatsuba With num_a = 2 ; num_b = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 104 | DEPTH: 105] Created Clones: cln_a: 2 ; cln_b = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 104 Returned as Base Case 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 102 | DEPTH: 105] (BD Performed) Received Return from Karatsuba(103) | b = 2 ; d = 2 | bd: 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 102 | DEPTH: 105] (Pre-PQ) Going Recursive(103) on pq | p = 2 ; q = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 105] Entered Karatsuba With num_a = 2 ; num_b = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 105 | DEPTH: 106] Created Clones: cln_a: 2 ; cln_b = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 105 Returned as Base Case 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 102 | DEPTH: 106] (PQ Performed) Received Return from Karatsuba(103) | p = 2 ; q = 2 | pq: 4
+padFactor (2), padFactor/2 (1) ---- 0 * 10^2 +  * 10^1 + 4
+ac*10ˆ2 = 000 | adbc*10ˆ1 = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 102 Returned 004(3)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 94 | DEPTH: 106] (BD Performed) Received Return from Karatsuba(95) | b = 02 ; d = 02 | bd: 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 94 | DEPTH: 106] (Pre-PQ) Going Recursive(95) on pq | p = 93 ; q = 93
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 106] Entered Karatsuba With num_a = 93 ; num_b = 93
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 106 | DEPTH: 107] Created Clones: cln_a: 93 ; cln_b = 93
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 106 | DEPTH: 107] (Pre-AC) Going Recursive(107) on ac | a = 9 ; c = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 107] Entered Karatsuba With num_a = 9 ; num_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 107 | DEPTH: 108] Created Clones: cln_a: 9 ; cln_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 107 Returned as Base Case 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 106 | DEPTH: 108] (AC Performed) Received Return from Karatsuba(107) | a = 9 ; c = 9 | ac: 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 106 | DEPTH: 108] (Pre-BD) Going Recursive(107) on bd| b = 3 ; d = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 108] Entered Karatsuba With num_a = 3 ; num_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 108 | DEPTH: 109] Created Clones: cln_a: 3 ; cln_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 108 Returned as Base Case 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 106 | DEPTH: 109] (BD Performed) Received Return from Karatsuba(107) | b = 3 ; d = 3 | bd: 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 106 | DEPTH: 109] (Pre-PQ) Going Recursive(107) on pq | p = 12 ; q = 12
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 109] Entered Karatsuba With num_a = 12 ; num_b = 12
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 109 | DEPTH: 110] Created Clones: cln_a: 12 ; cln_b = 12
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 109 | DEPTH: 110] (Pre-AC) Going Recursive(110) on ac | a = 1 ; c = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 110] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 110 | DEPTH: 111] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 110 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 109 | DEPTH: 111] (AC Performed) Received Return from Karatsuba(110) | a = 1 ; c = 1 | ac: 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 109 | DEPTH: 111] (Pre-BD) Going Recursive(110) on bd| b = 2 ; d = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 111] Entered Karatsuba With num_a = 2 ; num_b = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 111 | DEPTH: 112] Created Clones: cln_a: 2 ; cln_b = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 111 Returned as Base Case 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 109 | DEPTH: 112] (BD Performed) Received Return from Karatsuba(110) | b = 2 ; d = 2 | bd: 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 109 | DEPTH: 112] (Pre-PQ) Going Recursive(110) on pq | p = 3 ; q = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 112] Entered Karatsuba With num_a = 3 ; num_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 112 | DEPTH: 113] Created Clones: cln_a: 3 ; cln_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 112 Returned as Base Case 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 109 | DEPTH: 113] (PQ Performed) Received Return from Karatsuba(110) | p = 3 ; q = 3 | pq: 9
+padFactor (2), padFactor/2 (1) ---- 1 * 10^2 + 4 * 10^1 + 4
+ac*10ˆ2 = 100 | adbc*10ˆ1 = 40
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 109 Returned 144(3)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 106 | DEPTH: 113] (PQ Performed) Received Return from Karatsuba(107) | p = 12 ; q = 12 | pq: 144
+padFactor (2), padFactor/2 (1) ---- 81 * 10^2 + 54 * 10^1 + 09
+ac*10ˆ2 = 8100 | adbc*10ˆ1 = 540
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 106 Returned 8649(4)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 94 | DEPTH: 113] (PQ Performed) Received Return from Karatsuba(95) | p = 93 ; q = 93 | pq: 8649
+padFactor (2), padFactor/2 (1) ---- 8281 * 10^2 + 364 * 10^1 + 0004
+ac*10ˆ2 = 828100 | adbc*10ˆ1 = 3640
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 94 Returned 831744(6)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 93 | DEPTH: 113] (AC Performed) Received Return from Karatsuba(94) | a = 912 ; c = 912 | ac: 831744
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 93 | DEPTH: 113] (Pre-BD) Going Recursive(94) on bd| b = 468 ; d = 468
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 113] Entered Karatsuba With num_a = 468 ; num_b = 468
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 113 | DEPTH: 114] Created Clones: cln_a: 468 ; cln_b = 468
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 113 | DEPTH: 114] (Pre-AC) Going Recursive(114) on ac | a = 46 ; c = 46
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 114] Entered Karatsuba With num_a = 46 ; num_b = 46
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 114 | DEPTH: 115] Created Clones: cln_a: 46 ; cln_b = 46
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 114 | DEPTH: 115] (Pre-AC) Going Recursive(115) on ac | a = 4 ; c = 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 115] Entered Karatsuba With num_a = 4 ; num_b = 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 115 | DEPTH: 116] Created Clones: cln_a: 4 ; cln_b = 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 115 Returned as Base Case 16
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 114 | DEPTH: 116] (AC Performed) Received Return from Karatsuba(115) | a = 4 ; c = 4 | ac: 16
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 114 | DEPTH: 116] (Pre-BD) Going Recursive(115) on bd| b = 6 ; d = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 116] Entered Karatsuba With num_a = 6 ; num_b = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 116 | DEPTH: 117] Created Clones: cln_a: 6 ; cln_b = 6
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 116 Returned as Base Case 36
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 114 | DEPTH: 117] (BD Performed) Received Return from Karatsuba(115) | b = 6 ; d = 6 | bd: 36
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 114 | DEPTH: 117] (Pre-PQ) Going Recursive(115) on pq | p = 10 ; q = 10
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 117] Entered Karatsuba With num_a = 10 ; num_b = 10
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 117 | DEPTH: 118] Created Clones: cln_a: 10 ; cln_b = 10
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 117 | DEPTH: 118] (Pre-AC) Going Recursive(118) on ac | a = 1 ; c = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 118] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 118 | DEPTH: 119] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 118 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 117 | DEPTH: 119] (AC Performed) Received Return from Karatsuba(118) | a = 1 ; c = 1 | ac: 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 117 | DEPTH: 119] (Pre-BD) Going Recursive(118) on bd| b = 0 ; d = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 119] Entered Karatsuba With num_a = 0 ; num_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 119 | DEPTH: 120] Created Clones: cln_a: 0 ; cln_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 119 Returned as Base Case 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 117 | DEPTH: 120] (BD Performed) Received Return from Karatsuba(118) | b = 0 ; d = 0 | bd: 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 117 | DEPTH: 120] (Pre-PQ) Going Recursive(118) on pq | p = 1 ; q = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 120] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 120 | DEPTH: 121] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 120 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 117 | DEPTH: 121] (PQ Performed) Received Return from Karatsuba(118) | p = 1 ; q = 1 | pq: 1
+padFactor (2), padFactor/2 (1) ---- 1 * 10^2 +  * 10^1 + 0
+ac*10ˆ2 = 100 | adbc*10ˆ1 = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 117 Returned 100(3)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 114 | DEPTH: 121] (PQ Performed) Received Return from Karatsuba(115) | p = 10 ; q = 10 | pq: 100
+padFactor (2), padFactor/2 (1) ---- 16 * 10^2 + 48 * 10^1 + 36
+ac*10ˆ2 = 1600 | adbc*10ˆ1 = 480
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 114 Returned 2116(4)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 113 | DEPTH: 121] (AC Performed) Received Return from Karatsuba(114) | a = 46 ; c = 46 | ac: 2116
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 113 | DEPTH: 121] (Pre-BD) Going Recursive(114) on bd| b = 08 ; d = 08
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 121] Entered Karatsuba With num_a = 08 ; num_b = 08
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 121 | DEPTH: 122] Created Clones: cln_a: 08 ; cln_b = 08
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 121 | DEPTH: 122] (Pre-AC) Going Recursive(122) on ac | a = 0 ; c = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 122] Entered Karatsuba With num_a = 0 ; num_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 122 | DEPTH: 123] Created Clones: cln_a: 0 ; cln_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 122 Returned as Base Case 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 121 | DEPTH: 123] (AC Performed) Received Return from Karatsuba(122) | a = 0 ; c = 0 | ac: 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 121 | DEPTH: 123] (Pre-BD) Going Recursive(122) on bd| b = 8 ; d = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 123] Entered Karatsuba With num_a = 8 ; num_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 123 | DEPTH: 124] Created Clones: cln_a: 8 ; cln_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 123 Returned as Base Case 64
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 121 | DEPTH: 124] (BD Performed) Received Return from Karatsuba(122) | b = 8 ; d = 8 | bd: 64
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 121 | DEPTH: 124] (Pre-PQ) Going Recursive(122) on pq | p = 8 ; q = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 124] Entered Karatsuba With num_a = 8 ; num_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 124 | DEPTH: 125] Created Clones: cln_a: 8 ; cln_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 124 Returned as Base Case 64
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 121 | DEPTH: 125] (PQ Performed) Received Return from Karatsuba(122) | p = 8 ; q = 8 | pq: 64
+padFactor (2), padFactor/2 (1) ---- 00 * 10^2 +  * 10^1 + 64
+ac*10ˆ2 = 0000 | adbc*10ˆ1 = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 121 Returned 0064(4)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 113 | DEPTH: 125] (BD Performed) Received Return from Karatsuba(114) | b = 08 ; d = 08 | bd: 64
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 113 | DEPTH: 125] (Pre-PQ) Going Recursive(114) on pq | p = 54 ; q = 54
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 125] Entered Karatsuba With num_a = 54 ; num_b = 54
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 125 | DEPTH: 126] Created Clones: cln_a: 54 ; cln_b = 54
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 125 | DEPTH: 126] (Pre-AC) Going Recursive(126) on ac | a = 5 ; c = 5
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 126] Entered Karatsuba With num_a = 5 ; num_b = 5
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 126 | DEPTH: 127] Created Clones: cln_a: 5 ; cln_b = 5
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 126 Returned as Base Case 25
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 125 | DEPTH: 127] (AC Performed) Received Return from Karatsuba(126) | a = 5 ; c = 5 | ac: 25
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 125 | DEPTH: 127] (Pre-BD) Going Recursive(126) on bd| b = 4 ; d = 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 127] Entered Karatsuba With num_a = 4 ; num_b = 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 127 | DEPTH: 128] Created Clones: cln_a: 4 ; cln_b = 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 127 Returned as Base Case 16
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 125 | DEPTH: 128] (BD Performed) Received Return from Karatsuba(126) | b = 4 ; d = 4 | bd: 16
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 125 | DEPTH: 128] (Pre-PQ) Going Recursive(126) on pq | p = 9 ; q = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 128] Entered Karatsuba With num_a = 9 ; num_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 128 | DEPTH: 129] Created Clones: cln_a: 9 ; cln_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 128 Returned as Base Case 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 125 | DEPTH: 129] (PQ Performed) Received Return from Karatsuba(126) | p = 9 ; q = 9 | pq: 81
+padFactor (2), padFactor/2 (1) ---- 25 * 10^2 + 40 * 10^1 + 16
+ac*10ˆ2 = 2500 | adbc*10ˆ1 = 400
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 125 Returned 2916(4)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 113 | DEPTH: 129] (PQ Performed) Received Return from Karatsuba(114) | p = 54 ; q = 54 | pq: 2916
+padFactor (2), padFactor/2 (1) ---- 2116 * 10^2 + 736 * 10^1 + 0064
+ac*10ˆ2 = 211600 | adbc*10ˆ1 = 7360
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 113 Returned 219024(6)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 93 | DEPTH: 129] (BD Performed) Received Return from Karatsuba(94) | b = 468 ; d = 468 | bd: 219024
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 93 | DEPTH: 129] (Pre-PQ) Going Recursive(94) on pq | p = 1380 ; q = 1380
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 129] Entered Karatsuba With num_a = 1380 ; num_b = 1380
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 129 | DEPTH: 130] Created Clones: cln_a: 1380 ; cln_b = 1380
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 129 | DEPTH: 130] (Pre-AC) Going Recursive(130) on ac | a = 13 ; c = 13
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 130] Entered Karatsuba With num_a = 13 ; num_b = 13
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 130 | DEPTH: 131] Created Clones: cln_a: 13 ; cln_b = 13
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 130 | DEPTH: 131] (Pre-AC) Going Recursive(131) on ac | a = 1 ; c = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 131] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 131 | DEPTH: 132] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 131 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 130 | DEPTH: 132] (AC Performed) Received Return from Karatsuba(131) | a = 1 ; c = 1 | ac: 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 130 | DEPTH: 132] (Pre-BD) Going Recursive(131) on bd| b = 3 ; d = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 132] Entered Karatsuba With num_a = 3 ; num_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 132 | DEPTH: 133] Created Clones: cln_a: 3 ; cln_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 132 Returned as Base Case 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 130 | DEPTH: 133] (BD Performed) Received Return from Karatsuba(131) | b = 3 ; d = 3 | bd: 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 130 | DEPTH: 133] (Pre-PQ) Going Recursive(131) on pq | p = 4 ; q = 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 133] Entered Karatsuba With num_a = 4 ; num_b = 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 133 | DEPTH: 134] Created Clones: cln_a: 4 ; cln_b = 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 133 Returned as Base Case 16
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 130 | DEPTH: 134] (PQ Performed) Received Return from Karatsuba(131) | p = 4 ; q = 4 | pq: 16
+padFactor (2), padFactor/2 (1) ---- 1 * 10^2 + 6 * 10^1 + 9
+ac*10ˆ2 = 100 | adbc*10ˆ1 = 60
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 130 Returned 169(3)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 129 | DEPTH: 134] (AC Performed) Received Return from Karatsuba(130) | a = 13 ; c = 13 | ac: 169
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 129 | DEPTH: 134] (Pre-BD) Going Recursive(130) on bd| b = 80 ; d = 80
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 134] Entered Karatsuba With num_a = 80 ; num_b = 80
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 134 | DEPTH: 135] Created Clones: cln_a: 80 ; cln_b = 80
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 134 | DEPTH: 135] (Pre-AC) Going Recursive(135) on ac | a = 8 ; c = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 135] Entered Karatsuba With num_a = 8 ; num_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 135 | DEPTH: 136] Created Clones: cln_a: 8 ; cln_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 135 Returned as Base Case 64
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 134 | DEPTH: 136] (AC Performed) Received Return from Karatsuba(135) | a = 8 ; c = 8 | ac: 64
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 134 | DEPTH: 136] (Pre-BD) Going Recursive(135) on bd| b = 0 ; d = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 136] Entered Karatsuba With num_a = 0 ; num_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 136 | DEPTH: 137] Created Clones: cln_a: 0 ; cln_b = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 136 Returned as Base Case 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 134 | DEPTH: 137] (BD Performed) Received Return from Karatsuba(135) | b = 0 ; d = 0 | bd: 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 134 | DEPTH: 137] (Pre-PQ) Going Recursive(135) on pq | p = 8 ; q = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 137] Entered Karatsuba With num_a = 8 ; num_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 137 | DEPTH: 138] Created Clones: cln_a: 8 ; cln_b = 8
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 137 Returned as Base Case 64
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 134 | DEPTH: 138] (PQ Performed) Received Return from Karatsuba(135) | p = 8 ; q = 8 | pq: 64
+padFactor (2), padFactor/2 (1) ---- 64 * 10^2 +  * 10^1 + 00
+ac*10ˆ2 = 6400 | adbc*10ˆ1 = 0
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 134 Returned 6400(4)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 129 | DEPTH: 138] (BD Performed) Received Return from Karatsuba(130) | b = 80 ; d = 80 | bd: 6400
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 129 | DEPTH: 138] (Pre-PQ) Going Recursive(130) on pq | p = 93 ; q = 93
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 138] Entered Karatsuba With num_a = 93 ; num_b = 93
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 138 | DEPTH: 139] Created Clones: cln_a: 93 ; cln_b = 93
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 138 | DEPTH: 139] (Pre-AC) Going Recursive(139) on ac | a = 9 ; c = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 139] Entered Karatsuba With num_a = 9 ; num_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 139 | DEPTH: 140] Created Clones: cln_a: 9 ; cln_b = 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 139 Returned as Base Case 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 138 | DEPTH: 140] (AC Performed) Received Return from Karatsuba(139) | a = 9 ; c = 9 | ac: 81
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 138 | DEPTH: 140] (Pre-BD) Going Recursive(139) on bd| b = 3 ; d = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 140] Entered Karatsuba With num_a = 3 ; num_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 140 | DEPTH: 141] Created Clones: cln_a: 3 ; cln_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 140 Returned as Base Case 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 138 | DEPTH: 141] (BD Performed) Received Return from Karatsuba(139) | b = 3 ; d = 3 | bd: 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 138 | DEPTH: 141] (Pre-PQ) Going Recursive(139) on pq | p = 12 ; q = 12
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 141] Entered Karatsuba With num_a = 12 ; num_b = 12
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 141 | DEPTH: 142] Created Clones: cln_a: 12 ; cln_b = 12
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 141 | DEPTH: 142] (Pre-AC) Going Recursive(142) on ac | a = 1 ; c = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 142] Entered Karatsuba With num_a = 1 ; num_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 142 | DEPTH: 143] Created Clones: cln_a: 1 ; cln_b = 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 142 Returned as Base Case 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 141 | DEPTH: 143] (AC Performed) Received Return from Karatsuba(142) | a = 1 ; c = 1 | ac: 1
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 141 | DEPTH: 143] (Pre-BD) Going Recursive(142) on bd| b = 2 ; d = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 143] Entered Karatsuba With num_a = 2 ; num_b = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 143 | DEPTH: 144] Created Clones: cln_a: 2 ; cln_b = 2
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 143 Returned as Base Case 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 141 | DEPTH: 144] (BD Performed) Received Return from Karatsuba(142) | b = 2 ; d = 2 | bd: 4
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 141 | DEPTH: 144] (Pre-PQ) Going Recursive(142) on pq | p = 3 ; q = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [SPAWN NODE-ID 144] Entered Karatsuba With num_a = 3 ; num_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 144 | DEPTH: 145] Created Clones: cln_a: 3 ; cln_b = 3
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 144 Returned as Base Case 9
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 141 | DEPTH: 145] (PQ Performed) Received Return from Karatsuba(142) | p = 3 ; q = 3 | pq: 9
+padFactor (2), padFactor/2 (1) ---- 1 * 10^2 + 4 * 10^1 + 4
+ac*10ˆ2 = 100 | adbc*10ˆ1 = 40
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 141 Returned 144(3)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 138 | DEPTH: 145] (PQ Performed) Received Return from Karatsuba(139) | p = 12 ; q = 12 | pq: 144
+padFactor (2), padFactor/2 (1) ---- 81 * 10^2 + 54 * 10^1 + 09
+ac*10ˆ2 = 8100 | adbc*10ˆ1 = 540
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 138 Returned 8649(4)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 129 | DEPTH: 145] (PQ Performed) Received Return from Karatsuba(130) | p = 93 ; q = 93 | pq: 8649
+padFactor (4), padFactor/2 (2) ---- 0169 * 10^4 + 2080 * 10^2 + 6400
+ac*10ˆ4 = 01690000 | adbc*10ˆ2 = 208000
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 129 Returned 01904400(8)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | [NODE-ID 93 | DEPTH: 145] (PQ Performed) Received Return from Karatsuba(94) | p = 1380 ; q = 1380 | pq: 1904400
+padFactor (6), padFactor/2 (3) ---- 831744 * 10^6 + 853632 * 10^3 + 219024
+ac*10ˆ6 = 831744000000 | adbc*10ˆ3 = 853632000
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Node 93 Returned 832597851024(12)
+| [NODE-ID 0 | DEPTH: 145] (PQ Performed) Received Return from Karatsuba(1) | p = 912468 ; q = 912468 | pq: 832597851024
+padFactor (12), padFactor/2 (6) ---- 015241383936 * 10^12 + 2/4816531/44 * 10^6 + 622540/36144
+ac*10ˆ12 = 015241383936000000000000 | adbc*10ˆ6 = 2/4816531/44000000
+Node 0 Returned (null)(4467570830351532056)
+Critical Result: 15241578753153484/36144

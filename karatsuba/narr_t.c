@@ -373,9 +373,11 @@ int iszero_na(numarray_t* t) {
    return 1;
 }
 
-/*
-   COMPARE FUNCTIONS
-*/
+void dump_na(numarray_t* t) {
+   for(int i = 0; i < t->len -1; i++){
+      printf("[%d] - %d\n", i, t->num[i]);
+   }
+}
 
 /*
    COMPARE FUNCTIONS

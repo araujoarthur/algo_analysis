@@ -90,6 +90,9 @@ void run_tck(tc_k_t test, test_ctx* ctx) {
       ctx->success++;
    } else {
       ctx->failed++;
+      //printliml_na(test.result->num, test.result->len);
+      //dump_na(test.result);
+      //exit(0);
    }
    //TODO
 

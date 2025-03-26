@@ -106,7 +106,8 @@ char* natstr(numarray_t*);
 
 // verify if the given numarray_t* holds the zero value.
 int iszero_na(numarray_t*);
-
+// dumps the actual integer underneath the type
+void dump_na(numarray_t* t);
 
 /*
    COMPARE FUNCTIONS

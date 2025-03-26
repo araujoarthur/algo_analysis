@@ -29,7 +29,7 @@ char* createIndent(int n, char m) {
 
 #define INDENTNODE_CHAR '|'
 
-//#define PRINT_TREE
+#define PRINT_TREE
 
 #ifdef PRINT_TREE
    #define PRINT_NODE(fmt, ...) printf(fmt, ##__VA_ARGS__)
@@ -217,7 +217,7 @@ numarray_t* karatsuba(numarray_t* num_a, numarray_t* num_b){
 
    numarray_t* paddedADBC = padl_na(adbc, padFactor/2);
   
-   PRINT_NODE("ac*10ˆ%d = %s | adbc*10ˆ%d%s\n", padFactor, natstr(paddedAC), padFactor/2, natstr(paddedADBC));
+   PRINT_NODE("ac*10ˆ%d = %s | adbc*10ˆ%d = %s\n", padFactor, natstr(paddedAC), padFactor/2, natstr(paddedADBC));
    numarray_t* intermediary_sum = sum_na(paddedAC, paddedADBC);
    numarray_t* result = sum_na(intermediary_sum, bd);
    //terminateNumArray(intermediary_sum);
