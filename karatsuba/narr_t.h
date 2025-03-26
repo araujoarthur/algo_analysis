@@ -73,11 +73,28 @@ numarray_t* padl_na(numarray_t*, size_t);
 numarray_t* trim_na(numarray_t*);
 // padding equalization, pads destructively.
 void padeq_na(numarray_t*, numarray_t*);
+// pads the numarray_t to the right until its length becomes the next power of 2.
+numarray_t* padpow2_na(numarray_t*);
 
 /**********************/
 /* PRINTING FUNCTIONS */
 /**********************/
 // print normal, Displays in the numarray_t number in the expected orientation.
-void printn_na(numarray_t* t);
+void printn_na(numarray_t*);
 // print with limit on layout, i.e prints up to n characters from left to right (memory layout).
 void printliml_na(int*, int);
+
+
+/************************/
+/* CONVERSION FUNCTIONS */
+/************************/
+
+// numarry_t* to string (char*)
+char* natstr(numarray_t*);
+
+
+/*********************/
+/* HELPER FUNCTIONS  */
+/*********************/
+
+int iszero_na(numarray_t* t);

@@ -249,6 +249,17 @@ void padeq_na(numarray_t* a, numarray_t* b) {
    return;
 }
 
+// Takes a numarray_t* and modifies _in place_ so the amount of digits is a power of 2
+numarray_t* padpow2_na(numarray_t* t) {
+   double len = (double) t->len;
+   double srlen = sqrt(len);
+   double nextPow2 = ceil(srlen);
+   int desiredLength = (int) pow(nextPow2, 2.0);
+   int lengthOffset = desiredLength - t->len;
+   return padr_na(t, lengthOffset);
+}
+
+/**********************/
 /* PRINTING FUNCTIONS */
 
 // Displays in the numarray_t number in the expected orientation.
@@ -271,4 +282,43 @@ void printliml_na(int* numArray, int count) {
    }
 
    printf("\n");
+}
+
+
+/*
+   CONVERSION FUNCTIONS
+*/
+
+char* natstr(numarray_t* t) {
+   char* result = malloc(sizeof(char)*(t->len+1));
+   if (result == NULL) {
+      return NULL;
+   }
+
+   int chidx = 0;
+   for (int i = t->len-1; i >= 0; i--) {
+      result[chidx++] = t->num[i]+'0';
+   }
+
+   result[chidx] = '\0';
+   return result;
+}
+
+
+/*
+   HELPER FUNCTIONS
+*/
+
+int iszero_na(numarray_t* t) {
+   if (t == NULL || t->num == NULL) {
+      return 0;
+   }
+
+   for(int i = 0; i < t->len; i++){
+      if (t->num[i] != 0) {
+         return 0;
+      }
+   }
+
+   return 1;
 }

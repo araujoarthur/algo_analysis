@@ -5,12 +5,28 @@
 #include "narr_t.h"
 #include "narr_t_maths.h"
 
-void printliml_na(int* numArray, int count);
-
-
 
 int karatsuba_executions = 0;
+int node_id = 0;
+int node_ind = 2;
 
+char* createIndent(int n, char m) {
+   char* ch = malloc(sizeof(char)*((2*n)+1));
+   if (ch == NULL) {
+      return NULL;
+   }
+
+   for (int i = 0; i < (n)-2; i += 2) {
+      ch[i]=m;
+      ch[i+1]=' ';
+   }
+
+   ch[(2*n)-1] = '>';
+   ch[(2*n)] ='\0';
+   return ch;
+}
+
+#define INDENTNODE_CHAR '|'
 
 /*
 This function deserves a little more attention and documentation.
@@ -57,102 +73,86 @@ That the memory copy must happen in the following way:
    For x1:
       from &t->num[n] to t->num+(2n-1), effectively copying n bytes from interval [n, 2n-1].
 */
-numarray_t** splem_na(numarray_t* t, int n) {
+numarray_t** splem_na(numarray_t* t, int cut) {
    if(t == NULL){
-      DEBUG_OUTPUT("Returning NULL from splem_na, t was NULL.\n");
       return NULL;
    }
    numarray_t** res = malloc(sizeof(numarray_t*)*2);
    if (res == NULL) {
-      DEBUG_OUTPUT("Returning NULL from splem_na, res malloc failed.\n");
       return NULL;
    }
 
    res[0] = malloc(sizeof(numarray_t));
    if (res[0] == NULL) {
-      DEBUG_OUTPUT("To Return NULL from splem_na, res[0] malloc failed.\n");
       free(res);
-      DEBUG_OUTPUT("Returning NULL from splem_na, res[0] malloc failed.\n");
       return NULL;
    }
 
    res[1] = malloc(sizeof(numarray_t));
    if (res[1] == NULL) {
-      DEBUG_OUTPUT("To Return (1) NULL from splem_na, res[1] malloc failed.\n");
       free(res[0]);
-      DEBUG_OUTPUT("To Return (2) NULL from splem_na, res[1] malloc failed.\n");
       free(res);
-      DEBUG_OUTPUT("Returning NULL from splem_na, res[1] malloc failed.\n");
       return NULL;
    }
 
-   res[0]->len = n;
-   res[1]->len = n;
+   res[0]->len = cut;
+   res[1]->len = cut;
 
    res[0]->num = malloc(sizeof(int) * res[0]->len);
    if (res[0]->num == NULL) {
-      DEBUG_OUTPUT("To Return (1) NULL from splem_na, res[0]->num malloc failed.\n");
       free(res[0]);
-      DEBUG_OUTPUT("To Return (1) NULL from splem_na, res[0]->num malloc failed.\n");
       free(res[1]);
-      DEBUG_OUTPUT("To Return (1) NULL from splem_na, res[0]->num malloc failed.\n");
       free(res);
       return NULL;
    }
 
    res[1]->num = malloc(sizeof(int)*res[1]->len);
    if (res[1]->num == NULL) {
-      DEBUG_OUTPUT("To Return (1) NULL from splem_na, res[1]->num malloc failed.\n");
       free(res[0]->num);
-      DEBUG_OUTPUT("To Return (2) NULL from splem_na, res[1]->num malloc failed.\n");
       free(res[0]);
-      DEBUG_OUTPUT("To Return (3) NULL from splem_na, res[1]->num malloc failed.\n");
       free(res[1]);
-      DEBUG_OUTPUT("To Return (4) NULL from splem_na, res[1]->num malloc failed.\n");
       free(res);
-      DEBUG_OUTPUT("Returning NULL from splem_na, res[1]->num malloc failed.\n");
       return NULL;
    }
 
-   memcpy(res[1]->num, &t->num[n], sizeof(int)*n);
-   memcpy(res[0]->num, t->num, sizeof(int)*n);
+   memcpy(res[1]->num, &t->num[cut], sizeof(int)*cut);
+   memcpy(res[0]->num, t->num, sizeof(int)*cut);
 
    return res;
 }
 
 numarray_t* karatsuba(numarray_t* num_a, numarray_t* num_b){
-   DEBUG_OUTPUT_H("\n(%d) - ENTERING KARATSUBA\n", karatsuba_executions++);
+   int stack_level_node_id = node_id++;
+   int stack_level_node_ind = node_ind;
+   node_ind += 2;
    if (num_a == NULL || num_b == NULL || num_a->num == NULL || num_b->num == NULL) {
-      DEBUG_OUTPUT("---Returning NULL from karatsuba, num_a, num_b, num_a->num or num_b->num was NULL.\n");
       return NULL;
    }
 
-   NUMARRAY_T_DUMP("num_a", "karatsuba", num_a);
+   printf("%s\n", createIndent(stack_level_node_ind, INDENTNODE_CHAR));
+   printf("%s[SPAWN NODE-ID %d] Entered Karatsuba With num_a = %s ; num_b = %s\n", createIndent(stack_level_node_ind, INDENTNODE_CHAR), stack_level_node_id, natstr(num_a), natstr(num_b));
 
-   NUMARRAY_T_DUMP("num_b", "karatsuba", num_b);
-
-   DEBUG_OUTPUT("--Equalizing Padding\n");
    padeq_na(num_a, num_b);
 
-   if (num_a->len == 1 && num_b->len == 1) { // I assume both will be size 1 because I only consider inputs that have power of two length
+   if ((num_a->len == 1 && num_b->len == 1)) { // I assume both will be size 1 because I only consider inputs that have power of two length
+      
       int result = num_a->num[0] * num_b->num[0];
-      DEBUG_OUTPUT("Just Multiplied!\n");
-      DEBUG_OUTPUT_H("num_a->num[0] was %d\n", num_a->num[0]);
-      DEBUG_OUTPUT_H("num_b->num[0] was %d\n", num_b->num[0]);
       numarray_t* res_na_t = splint_na(result);
-      DEBUG_OUTPUT("--Returning res_na_t\n");
+      printf("%sNode %d Returned as Base Case %s\n", createIndent(stack_level_node_ind, INDENTNODE_CHAR), stack_level_node_id, natstr(res_na_t));
       return res_na_t;
    }
 
-   int new_n;
-   new_n = (num_a->len > num_b->len ? num_b->len : num_a->len)/2;
-   numarray_t** x = splem_na(num_a, new_n);
+   int cutIdx;
+   cutIdx = (num_a->len > num_b->len ? num_b->len : num_a->len)/2;
+
+   printf("(%d) Already Equally Padded? %s | %s \n", cutIdx, natstr(num_a), natstr(num_b));
+   numarray_t** x = splem_na(num_a, cutIdx);
    if(x == NULL) {
       DEBUG_OUTPUT("Returning NULL from karatsuba, x was NULL.\n");
       return NULL;
    }
 
-   numarray_t** y = splem_na(num_b, new_n);
+   numarray_t** y = splem_na(num_b, cutIdx);
    if (y == NULL) {
       DEBUG_OUTPUT("To Return NULL (1) from karatsuba, y was NULL.\n");
       free_na(x[0]);
@@ -162,32 +162,39 @@ numarray_t* karatsuba(numarray_t* num_a, numarray_t* num_b){
       return NULL;
    }
 
-   numarray_t* a = x[0];
-   numarray_t* b = x[1];
+   numarray_t* b = x[0];
+   numarray_t* a = x[1];
 
-   numarray_t* c = y[0];
-   numarray_t* d = y[1];
+   numarray_t* d = y[0];
+   numarray_t* c = y[1];
+
+   printf(">>>Selected b(%s), a(%s), c(%s), d(%s)\n", natstr(a), natstr(b), natstr(c), natstr(d));
    
-   DEBUG_OUTPUT("-- Applying SUM at karatsuba\n");
+   printf("a = %s, b = %s | a + b = ?\n", natstr(a), natstr(b));
    numarray_t* p = sum_na(a, b);
-   DEBUG_OUTPUT("-- Applying SUM at karatsuba\n");
+   printf("a = %s, b = %s | a + b = %s\n\n", natstr(a), natstr(b), natstr(p));
+   printf("c = %s, d = %s | c + d = ?\n", natstr(c), natstr(d));
    numarray_t* q = sum_na(c, d);
-
-   DEBUG_OUTPUT("-- Applying MULTIPLICATION ac at karatsuba\n");
+   printf("c = %s, d = %s | c + d = %s\n", natstr(c), natstr(d), natstr(q));
+ 
+   printf("%s[NODE-ID %d | DEPTH: %d] (Pre-AC) Going Recursive(%d) on ac | a = %s ; c = %s\n", createIndent(stack_level_node_ind+1, INDENTNODE_CHAR), stack_level_node_id, node_id, stack_level_node_id+1, natstr(a), natstr(c));
    numarray_t* ac = karatsuba(a, c);
-   DEBUG_OUTPUT("-- Applying MULTIPLICATION bd at karatsuba\n");
+   printf("%s[NODE-ID %d | DEPTH: %d] (AC Performed) Received Return from Karatsuba(%d) | a = %s ; c = %s | ac: %s\n", createIndent(stack_level_node_ind+1, INDENTNODE_CHAR), stack_level_node_id, node_id, stack_level_node_id+1, natstr(a), natstr(c), natstr(ac));
+
+   printf("%s[NODE-ID %d | DEPTH: %d] (Pre-BD) Going Recursive(%d) on bd| b = %s ; d = %s\n", createIndent(stack_level_node_ind+1, INDENTNODE_CHAR), stack_level_node_id, node_id, stack_level_node_id+1, natstr(b), natstr(d));
    numarray_t* bd = karatsuba(b, d);
+   printf("%s[NODE-ID %d | DEPTH: %d] (BD Performed) Received Return from Karatsuba(%d) | b = %s ; d = %s | bd: %s\n", createIndent(stack_level_node_ind+1, INDENTNODE_CHAR), stack_level_node_id, node_id, stack_level_node_id+1, natstr(b), natstr(d), natstr(bd));
 
-   DEBUG_OUTPUT("-- Applying MULTIPLICATION pq at karatsuba\n");
+   printf("%s[NODE-ID %d | DEPTH: %d] (Pre-PQ) Going Recursive(%d) on pq | p = %s ; q = %s\n", createIndent(stack_level_node_ind+1, INDENTNODE_CHAR), stack_level_node_id, node_id, stack_level_node_id+1, natstr(p), natstr(q));
    numarray_t* pq = karatsuba(p, q);
+   printf("%s[NODE-ID %d | DEPTH: %d] (PQ Performed) Received Return from Karatsuba(%d) | p = %s ; q = %s | pq: %s\n", createIndent(stack_level_node_ind+1, INDENTNODE_CHAR), stack_level_node_id, node_id, stack_level_node_id+1, natstr(p), natstr(q), natstr(pq));
 
-   DEBUG_OUTPUT("-- Applying SUM of ac+bd z1 at karatsuba\n");
    numarray_t* acbd = sum_na(ac, bd);
    // proceed to subtraction
    
    numarray_t* adbc = subtract_na(pq, acbd); // pq - (ac + bd)
 
-
+   printf("num_a->len(%zu) , num_a->len/2 (%zu) ---- %s * 10^%zu + %s * 10^%zu + %s\n", num_a->len, num_a->len/2, natstr(ac), num_a->len, natstr(adbc), num_a->len/2, natstr(bd));
    numarray_t* paddedAC = padl_na(ac, num_a->len);
 
    numarray_t* paddedADBC = padl_na(adbc, num_a->len/2);
@@ -198,8 +205,8 @@ numarray_t* karatsuba(numarray_t* num_a, numarray_t* num_b){
    //terminateNumArray(intermediary_sum);
    //terminateNumArray(z0);
 
-
    // should I free num_a and num_b and return only the result?
+   printf("%sNode %d Returned %s\n", createIndent(stack_level_node_id, INDENTNODE_CHAR), stack_level_node_id, natstr(result));
    return trim_na(result);
 }
 
