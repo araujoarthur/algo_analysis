@@ -38,7 +38,9 @@
    #define DEBUG_OUTPUT_H(T, U) ((void)0)
 #endif
 
-
+// higher cut limit
+#define HCT(T, L) {T->len - L};
+#define LCT(T, L) { L };
 
 /* This struct is intended to hold VERY large integers. */
 typedef struct NUMARRAY {
@@ -54,6 +56,8 @@ typedef struct NUMARRAY {
 numarray_t* cremp_na(int);
 // creation of a numarray_t* from a char array (i.e. string).
 numarray_t* crfch_na(char*);
+// creates a one digit zero numarray_t*
+numarray_t* zero_na();
 // clone numarray_t* into a new numarray_t*. All fields of the new numarray_t* are independent from the cloned struct.
 numarray_t* clone_na(numarray_t*);
 // split integer into numarray_t*
@@ -73,8 +77,11 @@ numarray_t* padl_na(numarray_t*, size_t);
 numarray_t* trim_na(numarray_t*);
 // padding equalization, pads destructively.
 void padeq_na(numarray_t*, numarray_t*);
+// padding equalization safely, not destructive.
+numarray_t** padeqs_na(numarray_t*, numarray_t*);
 // pads the numarray_t to the right until its length becomes the next power of 2.
 numarray_t* padpow2_na(numarray_t*);
+
 
 /**********************/
 /* PRINTING FUNCTIONS */
@@ -97,4 +104,23 @@ char* natstr(numarray_t*);
 /* HELPER FUNCTIONS  */
 /*********************/
 
-int iszero_na(numarray_t* t);
+// verify if the given numarray_t* holds the zero value.
+int iszero_na(numarray_t*);
+
+
+/*
+   COMPARE FUNCTIONS
+*/
+
+int eq_na(numarray_t* a, numarray_t* b);
+int gt_na(numarray_t* a, numarray_t* b);
+int ge_na(numarray_t* a, numarray_t* b);
+int lt_na(numarray_t* a, numarray_t* b);
+int le_na(numarray_t* a, numarray_t* b);
+int ne_na(numarray_t* a, numarray_t* b);
+
+/*
+   ASSERTION FUNCTIONS
+*/
+
+int asserteq_na(numarray_t*, numarray_t*, char*, char*);

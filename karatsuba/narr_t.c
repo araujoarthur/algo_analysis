@@ -4,6 +4,8 @@
 #include <math.h>
 #include "narr_t.h"
 
+#define TRUE_NA_CMP 1
+#define FALSE_NA_CMP 0
 
 
 /* CREATION AND FREEING FUNCTIONS */
@@ -25,6 +27,24 @@ numarray_t* cremp_na(int amount){
    }
 
    return result;
+}
+
+// creates a zero-value numarray_t*
+numarray_t* zero_na() {
+   numarray_t* t = malloc(sizeof(numarray_t));
+   if (!t) {
+      return NULL;
+   }
+
+   t->num = malloc(sizeof(int)*1);
+   if(!t->num) {
+      free_na(t);
+      return NULL;
+   }
+
+   t->num[0] = 0;
+   t->len = 1;
+   return t;
 }
 
 // creates a new numarray_t from a string
@@ -169,18 +189,20 @@ numarray_t* padl_na(numarray_t* t, size_t n) {
       return NULL;
    }
 
-   numarray_t* res = malloc(sizeof(int)*(t->len + n));
+   numarray_t* res = malloc(sizeof(numarray_t));
+   res->num = malloc(sizeof(int)*(t->len + n));
    if (res == NULL) {
       DEBUG_OUTPUT("Returning NULL from padl_na, malloc failed.\n");
       return NULL;
    }
 
    if (n == 0) {
-      memcpy(res->num, t->num, t->len*sizeof(int));
+      memcpy(res->num, t->num, t->len*sizeof(int)); // THIS IS CAUSING SEGFAULT
       res->len=t->len;
-      DEBUG_OUTPUT("Returning early from padl_na, n was 0.\n");
+      printf("Returning early from padl_na, n was 0.\n");
       return res;
    }
+ 
 
    res->num = calloc((t->len + n), sizeof(int));
    if (res->num == NULL) {
@@ -189,8 +211,11 @@ numarray_t* padl_na(numarray_t* t, size_t n) {
       return NULL;
    }
 
+
+
    memcpy(&res->num[n], t->num, sizeof(int)*t->len);
    res->len = n + t->len;
+   
    return res;
 }
 
@@ -247,6 +272,32 @@ void padeq_na(numarray_t* a, numarray_t* b) {
 
    padr_na(a, b->len - a->len);
    return;
+}
+
+// Equalizes the padding in clones and return the clones, so it does not break trimming.
+numarray_t** padeqs_na(numarray_t* a, numarray_t* b) {
+   if (!a || !b || !a->num || !b->num) {
+      return NULL;
+   }
+
+   numarray_t** result = malloc(sizeof(numarray_t*)*2);
+   numarray_t* clone_a = clone_na(a);
+   if (clone_a == NULL) {
+      free(result);
+      return NULL;
+   }
+
+   numarray_t* clone_b = clone_na(b);
+   if (clone_b == NULL) {
+      free_na(clone_a);
+      free(result);
+      return NULL;
+   }
+
+   padeq_na(clone_a, clone_b);
+   result[0] = clone_a;
+   result[1] = clone_b;
+   return result;
 }
 
 // Takes a numarray_t* and modifies _in place_ so the amount of digits is a power of 2
@@ -319,6 +370,145 @@ int iszero_na(numarray_t* t) {
          return 0;
       }
    }
-
    return 1;
+}
+
+/*
+   COMPARE FUNCTIONS
+*/
+
+/*
+   COMPARE FUNCTIONS
+*/
+
+int eq_na(numarray_t* a, numarray_t* b) {
+   if (!(a) && !(b)) {
+      return TRUE_NA_CMP; // if both are null, they are equal
+   }
+
+   if(!(a) || !(b)) { //only one of them is NULL
+      return FALSE_NA_CMP; // they are not equal;
+   }
+
+   numarray_t* c_a = clone_na(a);
+   numarray_t* c_b = clone_na(b);
+   trim_na(c_a);
+   trim_na(c_b);
+
+   if (c_a->len != c_b->len) {
+      free_na(c_a);
+      free_na(c_b);
+      return FALSE_NA_CMP;
+   }
+
+   free_na(c_a);
+   free_na(c_b);
+
+   if (!a->num && !b->num) {
+      return TRUE_NA_CMP;
+   }
+
+   if (!a->num || !b->num) {
+      return FALSE_NA_CMP;
+   }
+
+   c_a = clone_na(a);
+   c_b = clone_na(b);
+
+   padeq_na(c_a, c_b);
+
+   for (int i = c_a->len - 1; i > 0; i--) {
+      if (c_a->num[i] != c_b->num[i]) {
+         free_na(c_a);
+         free_na(c_b);
+         return FALSE_NA_CMP;
+      }
+   }
+
+   free_na(c_a);
+   free_na(c_b);
+   return TRUE_NA_CMP;
+}
+
+// a > b ? 1 : 0
+int gt_na(numarray_t* a, numarray_t* b) {
+   if (!(a) && !(b)) {
+      return FALSE_NA_CMP; // if both are null, they are equal
+   }
+
+   if(!(a) || !(b)) { //only one of them is NULL
+      return FALSE_NA_CMP; // they are not equal;
+   }
+
+   if (!a->num && !b->num) {
+      return FALSE_NA_CMP;
+   }
+
+   if (!a->num || !b->num) {
+      return FALSE_NA_CMP;
+   }
+
+   numarray_t* c_a = clone_na(a);
+   numarray_t* c_b = clone_na(b);
+   padeq_na(c_a, c_b);
+
+   int gt = 0;
+   for(int i = c_a->len - 1; i > 0; i--) {
+      if (c_a->num[i] == c_b->num[i]) {
+         continue;
+      } else {
+         gt =  c_a->num[i] > c_b->num[i];
+         break;
+      }
+   }
+
+   free_na(c_a);
+   free_na(c_b);
+   return gt;
+}
+int ge_na(numarray_t* a, numarray_t* b) {
+   return gt_na(a, b) || eq_na(a, b);
+}
+
+int lt_na(numarray_t* a, numarray_t* b) {
+   // Included to avoid returning true when ge returns false based on nullity.
+
+   if (!(a) && !(b)) {
+      return FALSE_NA_CMP; // if both are null, they are equal
+   }
+
+   if(!(a) || !(b)) { //only one of them is NULL
+      return FALSE_NA_CMP; // they are not equal;
+   }
+
+   if (!a->num && !b->num) {
+      return FALSE_NA_CMP;
+   }
+
+   if (!a->num || !b->num) {
+      return FALSE_NA_CMP;
+   }
+
+   return !ge_na(a, b);
+}
+
+int le_na(numarray_t* a, numarray_t* b) {
+   return lt_na(a, b) || eq_na(a, b);
+}
+int ne_na(numarray_t* a, numarray_t* b) {
+   return !eq_na(a, b);
+}
+
+/*
+   ASSERTION FUNCTIONS
+*/
+
+int asserteq_na(numarray_t* a, numarray_t* b, char* msg_s, char* msg_f) {
+   if (eq_na(a, b)) {
+      printf("[ASSERT_EQ SUCCESS, (%s) == (%s)]> %s\n", natstr(a), natstr(b), msg_s ? msg_s : "no_msg");
+      return TRUE_NA_CMP;
+   }
+
+   printf("[ASSERT_EQ FAILED, (%s) != (%s)]> %s\n", natstr(a), natstr(b), msg_f ? msg_f : "no_msg");
+   return FALSE_NA_CMP;
 }

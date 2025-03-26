@@ -3,6 +3,9 @@
 #include "narr_t.h"
 #include "narr_t_maths.h"
 
+#define _MIN(a, b)  a > b ? b : a
+#define _MAX(a, b) a > b ? a : b
+
 #define DEBUGGING
 //#define DUMPING
 
