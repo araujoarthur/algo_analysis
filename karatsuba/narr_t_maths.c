@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <assert.h>
 #include "narr_t.h"
 #include "narr_t_maths.h"
 
@@ -21,7 +22,7 @@ numarray_t* subtract_na(numarray_t* a, numarray_t* b) {
       }
 
       // Marks the next field to borrow.
-      if (a->num[i] < b->num[i]) {
+      if (result->num[i] < b->num[i]) {
          result->num[i]+=10;
          borrow++;
       }
@@ -30,13 +31,7 @@ numarray_t* subtract_na(numarray_t* a, numarray_t* b) {
    }
 
    // Checking if after the loop, borrow is still 1. It means something wen't wrong and b > a
-   if (borrow == 1) {
-      printf("subtraction failed\na: ");
-      printn_na(a);
-      printf("b: ");
-      printn_na(b);
-      exit(EXIT_FAILURE);
-   }
+   assert(borrow == 0);
 
    return trim_na(result);
 }

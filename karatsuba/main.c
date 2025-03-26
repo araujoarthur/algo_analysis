@@ -617,24 +617,29 @@ void do_general_tests() {
    printf("Tests Finished. A total of %d tests were ran, %d succeeded and %d failed", tctx->ran, tctx->success, tctx->failed);   
 }
 
+void solve_problem() {
+   numarray_t* in1 = crfch_na("3141592653589793238462643383279502884197169399375105820974944592");
+   numarray_t* in2 = crfch_na("2718281828459045235360287471352662497757247093699959574966967627");
+   numarray_t* prod = karatsuba(in1, in2);
+
+   printf("\n\n%s x %s = %s\n\n\n\nSOLUTION: %s", natstr(in1), natstr(in2), natstr(prod), natstr(prod));
+   return;
+}
 
 int main() {
-   numarray_t* in1 = crfch_na("3141592653589793238462643383279502884197169399375105820974944592");
-   printn_na(in1);
-   numarray_t* in2 = crfch_na("2718281828459045235360287471352662497757247093699959574966967627");
-   printn_na(in2);
 
-   //do_general_tests();
 
+   do_general_tests();
+   //solve_problem();
    numarray_t *critical1 = crfch_na("123456789012");
    numarray_t *critical2 = crfch_na("123456789012");
    numarray_t *critical_res = karatsuba(critical1, critical2);
-   printf("Critical Result: %s\nResult of printn_na (result): ", natstr(critical_res));
-   printn_na(critical_res);
-   printf("\nResult of printn_na (critical1):\n");
-   printn_na(critical1);
-   printf("\nResult of printn_na (critical2):\n");
-   printn_na(critical2);
+   //printf("Critical Result: %s\nResult of printn_na (result): ", natstr(critical_res));
+   //printn_na(critical_res);
+   //printf("\nResult of printn_na (critical1):\n");
+   //printn_na(critical1);
+   //printf("\nResult of printn_na (critical2):\n");
+   //printn_na(critical2);
    //numarray_t* wow = karatsuba(in1, in2);
    //printf("Result Len: %zu | Value: %s\n", wow->len, natstr(wow));
    return 0;

@@ -11,6 +11,11 @@ int karatsuba_executions = 0;
 int node_id = 0;
 int node_ind = 2;
 
+
+#define INDENTNODE_CHAR '|'
+
+//#define PRINT_TREE
+
 char* createIndent(int n, char m) {
    char* ch = malloc(sizeof(char)*((2*n)+1));
    if (ch == NULL) {
@@ -27,10 +32,6 @@ char* createIndent(int n, char m) {
    return ch;
 }
 
-#define INDENTNODE_CHAR '|'
-
-#define PRINT_TREE
-
 #ifdef PRINT_TREE
    #define PRINT_NODE(fmt, ...) printf(fmt, ##__VA_ARGS__)
 #else
@@ -45,12 +46,11 @@ Purpose: To split a numarray_t* into two numarray_t*, and divide equally between
 These return values are stored in an array I called "result".
 
    Given the expression x = x1 * B^M + x0, x being equivalent to t->num, then:
-      THE FIRST element returned by this function is equivalent to x0
-      THE SECOND element returned by this function is equivalent to x1
+      THE FIRST element returned by this function is equivalent to x1
+      THE SECOND element returned by this function is equivalent to x0
 
 Assumptions:
    1. `n` is correctly defined. This is responsability of the caller.
-   2. n is even.
 
 Returns:
    NULL on failure,
@@ -151,10 +151,14 @@ numarray_t* karatsuba(numarray_t* num_a, numarray_t* num_b){
       int result = cln_a->num[0] * cln_b->num[0];
       numarray_t* res_na_t = splint_na(result);
       PRINT_NODE("%sNode %d Returned as Base Case %s\n", createIndent(stack_level_node_ind, INDENTNODE_CHAR), stack_level_node_id, natstr(res_na_t));
+      free_na(cln_a);
+      free_na(cln_b);
       return res_na_t;
    }
 
    if (iszero_na(cln_a) || iszero_na(cln_b)) {
+      free_na(cln_a);
+      free_na(cln_b);
       return zero_na();
    }
 
@@ -164,6 +168,8 @@ numarray_t* karatsuba(numarray_t* num_a, numarray_t* num_b){
    //printf("(%d) Already Equally Padded? %s | %s \n", cutIdx, natstr(cln_a), natstr(cln_b));
    numarray_t** x = splem_na(cln_a, cutIdx);
    if(x == NULL) {
+      free_na(cln_a);
+      free_na(cln_b);
       return NULL;
    }
 
@@ -171,6 +177,8 @@ numarray_t* karatsuba(numarray_t* num_a, numarray_t* num_b){
    if (y == NULL) {
       free_na(x[0]);
       free_na(x[1]);
+      free_na(cln_a);
+      free_na(cln_b);
       return NULL;
    }
 
@@ -182,9 +190,11 @@ numarray_t* karatsuba(numarray_t* num_a, numarray_t* num_b){
    numarray_t* d = y[0];
    numarray_t* c = y[1];
 
-   //printf(">>>Selected b(%s), a(%s), c(%s), d(%s)\n", natstr(a), natstr(b), natstr(c), natstr(d));
-   
-   //printf("a = %s, b = %s | a + b = ?\n", natstr(a), natstr(b));
+   free(y);
+   free(x);
+   free_na(cln_a);
+   free_na(cln_b);
+
    numarray_t* p = sum_na(a, b);
    //printf("a = %s, b = %s | a + b = %s\n\n", natstr(a), natstr(b), natstr(p));
   // printf("c = %s, d = %s | c + d = ?\n", natstr(c), natstr(d));
@@ -220,10 +230,22 @@ numarray_t* karatsuba(numarray_t* num_a, numarray_t* num_b){
    PRINT_NODE("ac*10ˆ%d = %s | adbc*10ˆ%d = %s\n", padFactor, natstr(paddedAC), padFactor/2, natstr(paddedADBC));
    numarray_t* intermediary_sum = sum_na(paddedAC, paddedADBC);
    numarray_t* result = sum_na(intermediary_sum, bd);
-   //terminateNumArray(intermediary_sum);
-   //terminateNumArray(z0);
+   
+   free_na(b);
+   free_na(a);
+   free_na(d);
+   free_na(c);
+   free_na(p);
+   free_na(q);
+   free_na(ac);
+   free_na(bd);
+   free_na(pq);
+   free_na(acbd);
+   free_na(adbc);
+   free_na(paddedAC);
+   free_na(paddedADBC);
+   free_na(intermediary_sum);
 
-   // should I free num_a and num_b and return only the result?
    PRINT_NODE("%sNode %d Returned %s(%zu)\n", createIndent(stack_level_node_id, INDENTNODE_CHAR), stack_level_node_id, natstr(result), result->len);
    return trim_na(result);
 }

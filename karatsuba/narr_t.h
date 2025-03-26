@@ -44,7 +44,7 @@
 
 /* This struct is intended to hold VERY large integers. */
 typedef struct NUMARRAY {
-   int* num;
+   int* num; //in the future it could be a byte : 4 or a byte for each two digits. or store in B16
    size_t len;
 } numarray_t;
 
