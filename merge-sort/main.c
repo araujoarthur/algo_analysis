@@ -21,8 +21,11 @@ int main() {
    size_t first_half_len = LCT(LEN(array, int));
    size_t second_half_len = HCT(LEN(array, int));
 
+   int* merged = merge_sort(array, LEN(array, int));
+
    printarray(array, LEN(array, int));
    printarray(first_half, first_half_len);
    printarray(second_half, second_half_len);
+   printarray(merged, LEN(array, int));
    return 1;
 }

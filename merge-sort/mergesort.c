@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
+int merge_run = 0;
 
 int** split_array(int* arr, size_t len) {
    size_t hct = HCT(len);
@@ -60,5 +61,56 @@ int* merge_sort(int* arr, size_t len) {
 }
 
 int* merge(int* a, int* b, size_t len_a, size_t len_b) {
-   return NULL;
+   if (!a || !b) {
+      return NULL;
+   }
+
+   int i = 0;
+   int j = 0;
+   int newArrLen = len_a + len_b;
+   int* merged = malloc(sizeof(int) * newArrLen);
+   if (!merged) {
+      return NULL;
+   }
+
+   int k = 0;
+   for(; i < len_a && j < len_b; k++) {
+      merge_run++;
+      if (a[i] < b[j]) {
+         merged[k] = a[i];
+         i++;
+      } else {
+         merged[k] = b[j];
+         j++;
+      }
+   }
+
+   if (i < len_a) {
+      while (i < len_a && k < newArrLen) {
+         merged[k] = a[i];
+         i++;
+         k++;
+      }
+   } else if (j < len_b) {
+      while(j < len_b && k < newArrLen) {
+         merged[k] = b[j];
+         j++;
+         k++;
+      }
+   }
+
+   if (k < newArrLen) {
+      int selector = i < len_a;
+      int* notEmpty = selector ? a : b;
+      int notFinal = selector ? i : j;
+
+      for(k; k < newArrLen; k++) {
+         merged[k] = notEmpty[notFinal++];
+      }
+   }
+
+
+
+   return merged;
+
 }
