@@ -4,8 +4,7 @@
 
 #include "gal.h"
 
-#define _GAL_P_LAST_ITEM_OFFSET(T) (RAW_MEMORY_OFFSET)T->elements + T->element_count * T->element_size
-#define _GAL_P_ELEMENT_POSITION(T, I) (void*)(((RAW_MEMORY_OFFSET)T->elements + I * T->element_size))
+
 
 /*******************
 * OPERATIONS DEFS *
@@ -14,7 +13,7 @@
 /*
 * Responsável pela criação de uma array list genérica
 */
-gal_t create_gal(size_t element_size, int element_count) {
+gal_t gal_create(size_t element_size, int element_count) {
     int element_cap = 4;
     if (element_count > 0) {
         element_cap = 2 * element_count;
@@ -42,9 +41,7 @@ pgal_t gal_append(pgal_t gal, void* element)
     }
     
     // Ensure size.
-    if (__gal_requires_resize(gal)) {
-        __gal_expand(gal);
-    }
+    _GAL_ENSURE_SIZE(gal);
 
     void* val_ptr = _GAL_P_LAST_ITEM_OFFSET(gal);
     memcpy(val_ptr, element, gal->element_size);
@@ -52,14 +49,36 @@ pgal_t gal_append(pgal_t gal, void* element)
     return gal;
 }
 
-void* gal_getn(pgal_t gal, int n) {
-    if (!gal || n >= gal->element_count) return NULL;
+void* gal_getn(pgal_t gal, int idx) {
+    if (!gal || idx >= gal->element_count) return NULL;
 
     void* mem = malloc(gal->element_size*1);
     if (!mem) return NULL;
 
-    memcpy(mem, _GAL_P_ELEMENT_POSITION(gal, n), gal->element_size);
+    memcpy(mem, _GAL_P_ELEMENT_POSITION(gal, idx), gal->element_size);
     return mem;
+}
+
+pgal_t gal_insert_at(pgal_t gal, int idx, void* element) {
+    if (!gal || !element) return NULL;
+
+    if (idx > gal->element_count) {
+        return gal_append(gal, element);
+    }
+
+    _GAL_ENSURE_SIZE(gal);
+    // Será necessário mover tudo que está à direita de idx (tem indice maior que idx)
+
+    void* setposition_ptr = (RAW_MEMORY_OFFSET)gal->elements + (idx * gal->element_size);
+    void* rewrite_ptr = setposition_ptr + 1;
+    int leftover_elements = gal->element_count - idx;
+    
+    // Assumindo que ensure size funcionou correntamente...
+    memmove(rewrite_ptr, setposition_ptr, leftover_elements*gal->element_size);
+
+    memcpy(setposition_ptr, element, gal->element_size);
+
+    return gal;
 }
 
 /**************

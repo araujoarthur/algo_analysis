@@ -7,13 +7,13 @@ Implementação de uma lista dinâmica (lista com arranjo) genérica em C.
 
 ## Operações
 
-- [X] Criar a lista
-- [X] Expansão condicional de capacidade
-- [X] Adicionar elemento
-- [X] Obter elemento em determinado índice
-- [ ] Adicionar elemento em determinado indice.
-- [ ] Remover último elemento.
-- [ ] Definir valor de elemento em determinado.
-- [ ] Remover elemento em índice determinado.
-- [ ] Buscar indice de elemento.
-- [ ] Buscar sequência de elementos.
+- [X] Criar a lista (`gal_create`)
+- [X] Expansão condicional de capacidade (`__gal_requires_resize` e `__gal_expand`)
+- [X] Adicionar elemento (`gal_append`)
+- [X] Obter elemento em determinado índice (`gal_getn`)
+- [ ] Adicionar elemento em determinado indice (`gal_insert_at`).
+- [ ] Remover último elemento (`gal_pop`).
+- [ ] Definir valor de elemento em determinado (`gal_setn`).
+- [ ] Remover elemento em índice determinado (`gal_dropn`).
+- [ ] Buscar indice de elemento (`gal_search`).
+- [ ] Buscar sequência de elementos (`gal_lookup`).
