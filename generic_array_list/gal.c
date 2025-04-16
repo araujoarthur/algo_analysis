@@ -77,6 +77,7 @@ pgal_t gal_insert_at(pgal_t gal, int idx, void* element) {
     memmove(rewrite_ptr, setposition_ptr, leftover_elements*gal->element_size);
 
     memcpy(setposition_ptr, element, gal->element_size);
+    gal->element_count++;
 
     return gal;
 }

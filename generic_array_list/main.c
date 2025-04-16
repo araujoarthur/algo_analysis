@@ -6,22 +6,33 @@
 int main() {
    gal_t test = gal_create(sizeof(char), 0);
    printf("Insertion Tests\n");
-   gml_append(&test, 'a');
+   gml_append(&test, 'a'); // IDX 0
    PRINT_DEBUG_DATA(test);
-   gml_append(&test, 'b');
+   gml_append(&test, 'b'); // IDX 1
    PRINT_DEBUG_DATA(test);
-   gml_append(&test, 'c');
+   gml_append(&test, 'c'); // IDX 2
    PRINT_DEBUG_DATA(test);
-   gml_append(&test, 'z');
+   gml_append(&test, 'z'); // IDX 3
    PRINT_DEBUG_DATA(test);
-   gml_append(&test, 'n');
+   gml_append(&test, 'n'); // IDX 4
    PRINT_DEBUG_DATA(test);
-   gml_append(&test, 'm');
+   gml_append(&test, 'm'); // IDX 5
    PRINT_DEBUG_DATA(test);
-   gml_append(&test, 'h');
+   gml_append(&test, 'h'); // IDX 6
    PRINT_DEBUG_DATA(test);
 
+   printf("\nInsertion Tests\n");
+   PRINT_DEBUG_DATA(test);
    gml_printarr(&test, gml_print_char);
+   char jk = 'J';
+   printf("Inserting 'J' to index 3\n");
+   gml_insert_at(&test, 3, 'B');
+   char at_idx_3 = 'A';
+   PRINT_DEBUG_DATA(test);
+   gml_getn(&test, 3, &at_idx_3, 'A');
+   printf("Element at index 3: %c\n", at_idx_3);
+   gml_printarr(&test, gml_print_char);
+   printf("-----------\n");
 
    return 0;
 }

@@ -76,6 +76,14 @@ static void gml_print_char(void* item){ printf("%c", *(char*)item); }
         }\
     }while(0)
 
+// Versão genérica de insert_at
+#define gml_insert_at(__gal, __idx, __val)\
+    do{\
+        __typeof__(__val) __gal__tmp = (__val);\
+        gal_insert_at((__gal), (__idx), &__gal__tmp);\
+    }while(0)
+
+// Mostra a array em stdout de modo formatado.
 #define gml_printarr(__gal, __printer_func) \
     do {\
         printf("[");\
