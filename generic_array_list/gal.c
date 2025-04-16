@@ -82,6 +82,20 @@ pgal_t gal_insert_at(pgal_t gal, int idx, void* element) {
     return gal;
 }
 
+void* gal_pop(pgal_t gal) {
+    if (!gal) return NULL;
+
+    void* position_to_pop = _GAL_P_ELEMENT_POSITION(gal, gal->element_count-1);
+    void* popped = malloc(gal->element_size);
+    if (!popped) return NULL;
+
+    memcpy(popped, position_to_pop, gal->element_size);
+    memset(position_to_pop, 0, gal->element_size);
+    gal->element_count--;
+    
+    return popped;
+}
+
 /**************
 * HELPER DEFS *
 ***************/

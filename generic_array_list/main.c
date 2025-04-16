@@ -34,5 +34,21 @@ int main() {
    gml_printarr(&test, gml_print_char);
    printf("-----------\n");
 
+   printf("\n\nPop Tests\n\n");
+   PRINT_DEBUG_DATA(test);
+   gml_printarr(&test, gml_print_char);
+   printf("\n");
+   gal_pop(&test, NULL);
+   PRINT_DEBUG_DATA(test);
+   gml_printarr(&test, gml_print_char);
+   
+   gml_pop(&test, NULL, 'A');
+   PRINT_DEBUG_DATA(test);
+   gml_printarr(&test, gml_print_char);
+
+   gml_append(&test, 'p'); // IDX 5
+   PRINT_DEBUG_DATA(test);
+   gml_printarr(&test, gml_print_char);
+
    return 0;
 }

@@ -27,7 +27,8 @@ pgal_t gal_append(pgal_t gal, void* element);
 void* gal_getn(pgal_t gal, int idx);
 // Insere `element` em `gal` na posição `idx` ou na ultima posição, caso idx > element_count;
 pgal_t gal_insert_at(pgal_t gal, int idx, void* element);
-//
+// Remove o ultimo elemento da array
+void* gal_pop(pgal_t gal);
 
 // Helpers
 int __gal_requires_resize(pgal_t gal);
@@ -51,6 +52,7 @@ static void gml_print_char(void* item){ printf("%c", *(char*)item); }
             __gal_expand(gal);\
         }\
     }while(0)
+
 
 // GAL (Generic Array List) Macro Lib
 // Tem por finalidade tornar mais genérica a utilização da biblioteca.
@@ -82,6 +84,23 @@ static void gml_print_char(void* item){ printf("%c", *(char*)item); }
         __typeof__(__val) __gal__tmp = (__val);\
         gal_insert_at((__gal), (__idx), &__gal__tmp);\
     }while(0)
+
+// Versão genérica de pop 
+#define gml_pop(__gal, __dst, __default)\
+    do{\
+        void* __popped__ = gal_pop((__gal));\
+        if(__popped__) {\
+            if (__dst) {\
+                *(__dst) = *(__typeof__(*__dst)*)__popped__;\
+            }\
+            free(__popped__);\
+        }\
+        else if (__dst){\
+            *(__dst) = __default;\ 
+        }\
+    }while(0)
+
+    // Ln 98 é a causa do problema da Ln 45
 
 // Mostra a array em stdout de modo formatado.
 #define gml_printarr(__gal, __printer_func) \
