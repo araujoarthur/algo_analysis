@@ -85,22 +85,44 @@ static void gml_print_char(void* item){ printf("%c", *(char*)item); }
         gal_insert_at((__gal), (__idx), &__gal__tmp);\
     }while(0)
 
-// Versão genérica de pop 
-#define gml_pop(__gal, __dst, __default)\
+// Versão genérica de pop
+
+/* 
+    (((
+    SINCERAMENTE, ESSA EXPLICAÇÃO FOI ESCRITA SÓ PARA ORGANIZAR NA MINHA CABEÇA O CODIGO Q ERA PRA
+    ESCREVER. ANALISAR O RESULTADO É MUITO MAIS SALUBRE PARA O ENTENDIMENTO.
+    )))
+
+    Esse macro é um dirty-little-trick para emular um comportamento de overloading em C.
+    Ele serve para selecionar qual macro será utilizado posteriormente na eventual chamada para o
+    macro gml_pop. 
+    _1 recebe o valor do primeiro argumento posicional passado, _2 recebe o valor do segundo argumento posicional passado
+    _3 recebe o valor do terceiro argumento posicional passado e NAME recebe o valor do quarto argumento posicional passado e
+    retorna NAME. Depois disso o truque está em como utilizar o dispatch. A chamada será realizada de forma semelhante a:
+    _GML_POP_MACRO_DISPATCH(..., gal_pop_retrieve,<<sim, aqui fica um parametro vazio>>,gal_pop_discard). Se a chamada para pop tiver sido realizada com apenas 1 argumento
+    ou seja, apenas uma referência uma instância de GenericArrayList, a chamada traduzirá finalmente para:
+    _GML_POP_MACRO_DISPATCH(gal, , gal_pop_retrieve, gal_pop_discard), nesse caso, NAME será gal_pop_discard, e essa será a função chamada.
+    No caso de realizarmos uma chamada com _GML_POP_MACRO_DISPATCH(gal, dst, default, gal_pop_retrieve, gal_pop_discard) o elemento NAME será gal_pop_retrieve.
+*/
+#define _GML_POP_MACRO_DISPATCH(_1, _2, _3, NAME, ...) NAME
+
+#define __gml_pop_discard(__gal) \
+    do {\
+        void* __gmlpd_popped = gal_pop(__gal);\
+        free(__gmlpd_popped);\
+    }while(0)
+
+#define __gml_pop_retrieve(__gal, __dst, __default)\
     do{\
-        void* __popped__ = gal_pop((__gal));\
-        if(__popped__) {\
-            if (__dst) {\
-                *(__dst) = *(__typeof__(*__dst)*)__popped__;\
-            }\
-            free(__popped__);\
-        }\
-        else if (__dst){\
-            *(__dst) = __default;\ 
+        void* __gmlpr_popped = gal_pop(__gal);\
+        if(__gmlpr_popped) {\
+            *(__typeof__(*__dst)*) __dst = *(__typeof__(*__dst)*) __gmlpr_popped;\
+            free(__gmlpr_popped);\
         }\
     }while(0)
 
-    // Ln 98 é a causa do problema da Ln 45
+//                         VVVVVVVVV obtem o macro                                                 vvvvvvvvv Invoca o macro e passa os mesmos __VA_ARGS__ pra ele.
+#define gml_pop(...) _GML_POP_MACRO_DISPATCH(__VA_ARGS__, __gml_pop_retrieve, , __gml_pop_discard)(__VA_ARGS__)
 
 // Mostra a array em stdout de modo formatado.
 #define gml_printarr(__gal, __printer_func) \

@@ -38,11 +38,13 @@ int main() {
    PRINT_DEBUG_DATA(test);
    gml_printarr(&test, gml_print_char);
    printf("\n");
-   gal_pop(&test, NULL);
+   char popchar;
+   gml_pop(&test, &popchar, 'Z');
    PRINT_DEBUG_DATA(test);
+   printf("Extracted Char: %c\n", popchar);
    gml_printarr(&test, gml_print_char);
    
-   gml_pop(&test, NULL, 'A');
+   gml_pop(&test);
    PRINT_DEBUG_DATA(test);
    gml_printarr(&test, gml_print_char);
 
