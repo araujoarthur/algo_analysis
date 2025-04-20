@@ -69,7 +69,7 @@ pgal_t gal_insert_at(pgal_t gal, int idx, void* element) {
     _GAL_ENSURE_SIZE(gal);
     // Será necessário mover tudo que está à direita de idx (tem indice maior que idx)
 
-    void* setposition_ptr = (RAW_MEMORY_OFFSET)gal->elements + (idx * gal->element_size);
+    void* setposition_ptr = _GAL_P_ELEMENT_POSITION(gal, idx);
     void* rewrite_ptr = setposition_ptr + 1;
     int leftover_elements = gal->element_count - idx;
     
@@ -94,6 +94,18 @@ void* gal_pop(pgal_t gal) {
     gal->element_count--;
     
     return popped;
+}
+
+pgal_t gal_setn(pgal_t gal, int idx, void* element) {
+    if (!gal) return NULL;
+
+    if (idx > _LIDX(gal)) {
+        return NULL;
+    }
+    
+    memcpy(_GAL_P_ELEMENT_POSITION(gal, idx), element, gal->element_size);
+
+    return gal;
 }
 
 /**************

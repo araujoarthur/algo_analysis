@@ -52,5 +52,9 @@ int main() {
    PRINT_DEBUG_DATA(test);
    gml_printarr(&test, gml_print_char);
 
+   gml_setn(&test, 5, 'Z'); // IDX 5
+   PRINT_DEBUG_DATA(test);
+   gml_printarr(&test, gml_print_char);
+
    return 0;
 }

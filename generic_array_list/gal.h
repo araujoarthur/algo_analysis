@@ -5,6 +5,7 @@
 typedef char* RAW_MEMORY_OFFSET;
 typedef void (*gml_printer_t) (void* element); // Definição de alias p function type.
 
+
 /*
 To-Do: Reimplementar isso só que ao invés de tratar void* como um ponteiro, tratar como um tipo de dados agnostico (e fazer o casting para o tipo concreto quando necessario)
 Vai exigir bastante pointer arithmetics, mas é interessante.
@@ -29,6 +30,8 @@ void* gal_getn(pgal_t gal, int idx);
 pgal_t gal_insert_at(pgal_t gal, int idx, void* element);
 // Remove o ultimo elemento da array
 void* gal_pop(pgal_t gal);
+// Define o valor de um elemento em determinado indice
+pgal_t gal_setn(pgal_t gal, int idx, void* element);
 
 // Helpers
 int __gal_requires_resize(pgal_t gal);
@@ -42,9 +45,9 @@ static void gml_print_char(void* item){ printf("%c", *(char*)item); }
 
 // GALMHL - GAL Macro Helper Lib
 
-#define _GAL_P_LAST_ITEM_OFFSET(T) (RAW_MEMORY_OFFSET)(T)->elements + (T)->element_count * (T)->element_size
+#define _GAL_P_LAST_ITEM_OFFSET(T) (RAW_MEMORY_OFFSET)(T)->elements + ((pgal_t)T)->element_count * ((pgal_t)T)->element_size
 
-#define _GAL_P_ELEMENT_POSITION(T, I) (void*)(((RAW_MEMORY_OFFSET)(T)->elements + I * (T)->element_size))
+#define _GAL_P_ELEMENT_POSITION(T, I) (void*)(((RAW_MEMORY_OFFSET)((pgal_t)T)->elements + I * ((pgal_t)T)->element_size))
 
 #define _GAL_ENSURE_SIZE(T) \
     do {\
@@ -52,6 +55,8 @@ static void gml_print_char(void* item){ printf("%c", *(char*)item); }
             __gal_expand(gal);\
         }\
     }while(0)
+
+#define _LIDX(T) ((pgal_t)T)->element_count - 1
 
 
 // GAL (Generic Array List) Macro Lib
@@ -83,6 +88,14 @@ static void gml_print_char(void* item){ printf("%c", *(char*)item); }
     do{\
         __typeof__(__val) __gal__tmp = (__val);\
         gal_insert_at((__gal), (__idx), &__gal__tmp);\
+    }while(0)
+
+
+// Versão genérica de setn
+#define gml_setn(__gal, __idx, __val) \
+    do{\
+        __typeof__(__val) __gal__tmp = (__val);\
+        gal_setn((__gal), (__idx), &__gal__tmp);\
     }while(0)
 
 // Versão genérica de pop

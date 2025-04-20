@@ -17,8 +17,8 @@ Implementação de uma lista dinâmica (lista com arranjo) genérica em C.
 - [X] Adicionar elemento genérico em determinado indice (`gml_insert_at`).
 - [X] Remover último elemento (`gal_pop`)
 - [X] Remover último elemento genérico (`gml_pop`)
-- [ ] Definir valor de elemento em determinado índice (`gal_setn`)
-- [ ] Definir valor de elemento genérico em determinado índice (`gml_setn`)
+- [X] Definir valor de elemento em determinado índice (`gal_setn`)
+- [X] Definir valor de elemento genérico em determinado índice (`gml_setn`)
 - [ ] Remover elemento em índice determinado (`gal_dropn`)
 - [ ] Remover elemento genérico em índice determinado (`gml_dropn`)
 - [ ] Buscar indice de elemento (`gal_search`).
