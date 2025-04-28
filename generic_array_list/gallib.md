@@ -20,10 +20,10 @@ Implementação de uma lista dinâmica (lista com arranjo) genérica em C.
 - [X] Definir valor de elemento em determinado índice (`gal_setn`)
 - [X] Definir valor de elemento genérico em determinado índice (`gml_setn`)
 - [X] Remover elemento em índice determinado (`gal_remove_at`)
-- [X] Buscar indice de elemento (`gal_search`)
-- [X] Buscar indice de elemento genérico (`gml_search`)
+- [X] Buscar indice de elemento (`gal_find`)
+- [X] Buscar indice de elemento genérico (`gml_find`)
 - [X] Buscar ocorrências de elemento (`gal_find_all`)
-- [X] Buscar ocorrências de elemento genérico (`gml_find_all`)
+- [ ] Buscar ocorrências de elemento genérico (`gml_find_all`)
 - [X] Buscar ocorrência de sequência de elementos (`gal_lookup`)
 - [X] ~~[REMOVIDO] Buscar ocorrência de sequência de elementos genéricos (`gml_lookup`) // A busca já é genérica (em void*), não teria porque.~~
 - [ ] Buscar ocorrências de sequência de elementos (`gal_lookup_all`)

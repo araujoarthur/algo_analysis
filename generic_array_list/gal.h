@@ -34,12 +34,14 @@ void* gal_pop(pgal_t gal);
 pgal_t gal_setn(pgal_t gal, int idx, void* element);
 // Remove o valor de determinado indice
 pgal_t gal_remove_at(pgal_t gal, int idx);
-// Retorna o indice da primeira ocorrência do elemento element
+// Retorna o indice da primeira ocorrência do elemento element. A busca é realizada via naive search (mn).
 int gal_find(pgal_t gal, void* element);
-// Retorna uma nova lista gal_t com todos os as ocorrências de element em gal.
+// Retorna uma nova lista gal_t com todos os as ocorrências de element em gal. A busca é realizada via naive search (mn).
 gal_t gal_find_all(pgal_t gal, void* element);
-// Retorna o indice do primeiro elemento da primeira ocorrência de uma sequência.
+// Retorna o indice do primeiro elemento da primeira ocorrência de uma sequência. A busca é realizada via naive search (mn).
 int gal_search(pgal_t gal, pgal_t seq);
+// Retorna uma nova lsita gal_t com o indice onde se inicia todas as ocorrências da sequência enviada. A busca é realizada via naive search (mn).
+gal_t gal_search_all(pgal_t gal, pgal_t seq);
 
 
 // Helpers
@@ -116,6 +118,14 @@ static void gml_print_char(void* item){ printf("%c", *(char*)item); }
     ({\
         __typeof__(__val) __gal__tmp = (__typeof__(__val)) __val;\
         gal_find((pgal_t)__gal, &__gal__tmp);\
+    })
+
+
+// Versão Generica de find_all [!UNTESTED!]
+#define gml_find_all(__gal, __val) \
+    ({\
+        __typeof__(__val) __gal__tmp = (__typeof__(__val)) __val;\
+        gal_find_all((pgal_t)__gal, &__gal__tmp);\
     })
 // Versão genérica de pop
 

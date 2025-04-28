@@ -126,6 +126,8 @@ pgal_t gal_remove_at(pgal_t gal, int idx) {
     return gal; 
 }
 
+// A partir daqui é a parte que diz respeito ao T1 Alest
+
 int gal_find(pgal_t gal, void* element) {
     if (!gal) return -1;
 
@@ -172,6 +174,31 @@ int gal_search(pgal_t gal, pgal_t seq) {
 
     return -1;
 }
+
+gal_t gal_search_all(pgal_t gal, pgal_t seq) {
+    gal_t res = gal_create(sizeof(int), 0);
+
+    if (!gal || !seq) return res;
+    if (gal->element_size != seq->element_size) return res;
+    if (gal->element_count < seq->element_count) return res;
+
+    int stop_condition = gal->element_count - seq->element_count + 1;
+    int seq_len = seq->element_count;
+
+    int i = 0;
+    while (i < stop_condition) {
+        void* set_start = (void*)((RAW_MEMORY_OFFSET)gal->elements + i * gal->element_size);
+        if (__gal_elementwise_cmp(set_start, seq->elements, seq->element_count, gal->element_size)) {
+            printf("match i: %d\n", i);
+            gml_append(&res, i);
+        }
+        i++;
+    }
+    return res;
+}
+
+// T1 Alest Acaba Aqui;
+
 /**************
 * HELPER DEFS *
 ***************/
