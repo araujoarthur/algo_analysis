@@ -161,9 +161,13 @@ int gal_search(pgal_t gal, pgal_t seq) {
     int stop_condition = gal->element_count - seq->element_count + 1;
     int i = 0;
     while (i < stop_condition) {
-        if (__gal_elementwise_cmp(gal->elements, seq->elements, seq->element_count, gal->element_size)) {
+        void* set_start = (void*)((RAW_MEMORY_OFFSET)gal->elements + i * gal->element_size);
+        //int check_result = __gal_elementwise_cmp(set_start, seq->elements, seq->element_count, gal->element_size);
+        //printf("--[SEARCHING FROM INDEX %d]--\n", i);
+        if (__gal_elementwise_cmp(set_start, seq->elements, seq->element_count, gal->element_size)) {
             return i;
         }
+        i++;
     }
 
     return -1;
@@ -206,11 +210,15 @@ pgal_t __gal_expand(pgal_t gal) {
 
 int __gal_elementwise_cmp(void* set, void* subset, int subset_count, size_t element_size) {
     for (int i = 0; i < subset_count; i++){
+        
         void* current_on_set = (void*) ((RAW_MEMORY_OFFSET)set + i * element_size);
         void* current_on_subset = (void*) ((RAW_MEMORY_OFFSET)subset + i * element_size);
+        
+       // printf("Current on Set: %c | Current on Subset: %c | i: %d | Cmp Result: %d \n", *((char*)current_on_set), *((char*)current_on_subset), i, memcmp(current_on_set, current_on_subset, element_size));
         if (memcmp(current_on_set, current_on_subset, element_size) != 0) {
             return 0;
         }
+
     }    
     return 1;
 }

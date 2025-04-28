@@ -24,7 +24,7 @@ Implementação de uma lista dinâmica (lista com arranjo) genérica em C.
 - [X] Buscar indice de elemento genérico (`gml_search`)
 - [X] Buscar ocorrências de elemento (`gal_find_all`)
 - [X] Buscar ocorrências de elemento genérico (`gml_find_all`)
-- [ ] Buscar ocorrência de sequência de elementos (`gal_lookup`)
-- [ ] Buscar ocorrência de sequência de elementos genéricos (`gml_lookup`)
+- [X] Buscar ocorrência de sequência de elementos (`gal_lookup`)
+- [-] Buscar ocorrência de sequência de elementos genéricos (`gml_lookup`) // A busca já é genérica (em void*), não teria porque.
 - [ ] Buscar ocorrências de sequência de elementos (`gal_lookup_all`)
-- [ ] Buscar ocorrências de sequência de elementos genéricos(`gml_lookup_all`)
+- [-] Buscar ocorrências de sequência de elementos genéricos(`gml_lookup_all`) // A busca já é genérica (em void*), não teria porque.

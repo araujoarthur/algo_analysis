@@ -26,6 +26,34 @@ int main() {
     PRINT_DEBUG_DATA(test);
     gml_append(&test, 'z'); // IDX 9
     PRINT_DEBUG_DATA(test);
+    gml_append(&test, 'a'); // IDX 10
+    PRINT_DEBUG_DATA(test);
+    gml_append(&test, 'j'); // IDX 11
+    PRINT_DEBUG_DATA(test);
+    gml_append(&test, 'l'); // IDX 12
+    PRINT_DEBUG_DATA(test);
+    gml_append(&test, 'k'); // IDX 13
+    PRINT_DEBUG_DATA(test);
+    gml_append(&test, 'x'); // IDX 14
+    PRINT_DEBUG_DATA(test);
+    gml_append(&test, 'o'); // IDX 15
+    PRINT_DEBUG_DATA(test);
+    gml_append(&test, 'p'); // IDX 16
+    PRINT_DEBUG_DATA(test);
+    gml_append(&test, 'p'); // IDX 17
+    PRINT_DEBUG_DATA(test);
+    gml_append(&test, 'm'); // IDX 18
+    PRINT_DEBUG_DATA(test);
+    gml_append(&test, 'h'); // IDX 19
+    PRINT_DEBUG_DATA(test);
+    gml_append(&test, 'b'); // IDX 20
+    PRINT_DEBUG_DATA(test);
+    gml_append(&test, 'n'); // IDX 21
+    PRINT_DEBUG_DATA(test);
+    gml_append(&test, 'y'); // IDX 22
+    PRINT_DEBUG_DATA(test);
+    gml_append(&test, 'd'); // IDX 23
+    PRINT_DEBUG_DATA(test);
     
     gal_t searchSeq1 = gal_create(sizeof(char), 1);
     gml_append(&searchSeq1, 'z');
@@ -44,7 +72,25 @@ int main() {
     gml_append(&searchSeq3, 'n');
     PRINT_DEBUG_DATA(searchSeq3);
 
+    gal_t searchSeq4 = gal_create(sizeof(char), 2);
+    gml_append(&searchSeq4, 'k');
+    gml_append(&searchSeq4, 'k');
+    PRINT_DEBUG_DATA(searchSeq4);
+
+    printf("\n\nTesting First sequence (z)\n");
     int resultSeq1 = gal_search(&test, &searchSeq1);
-    printf("CONTINUE FROM HERE\n")
+    printf("1st Expected 3, found %d\n", resultSeq1);
+
+    printf("\n\nTesting Second sequence (z,n,m)\n");
+    int resultSeq2 = gal_search(&test, &searchSeq2);
+    printf("2nd Expected 3, found %d\n", resultSeq2);
+
+    printf("\n\nTesting Third sequence (m,h,b,n)\n");
+    int resultSeq3 = gal_search(&test, &searchSeq3);
+    printf("3rd Expected 5, found %d\n", resultSeq3);
+
+    printf("\n\nTesting Foruth sequence (k,k)\n");
+    int resultSeq4 = gal_search(&test, &searchSeq4);
+    printf("4th Expected -1, found %d\n", resultSeq4);
    return 0;
 }
