@@ -138,6 +138,36 @@ int gal_find(pgal_t gal, void* element) {
     return -1;
 }
 
+gal_t gal_find_all(pgal_t gal, void *element) {
+    gal_t res = gal_create(sizeof(int), 0);
+
+    if (!gal) return res;
+
+    for (int i = 0; i < gal->element_count; i++) {
+        void* current = _GAL_P_ELEMENT_POSITION(gal, i);
+        if(memcmp(current, element, gal->element_size) == 0) {
+            gal_append(&res, &i);
+        }
+    }
+
+    return res;
+}
+
+int gal_search(pgal_t gal, pgal_t seq) {
+    if (!gal || !seq) return -1;
+    if (gal->element_size != seq->element_size) return -1;
+    if (gal->element_count < seq->element_count) return -1;
+
+    int stop_condition = gal->element_count - seq->element_count + 1;
+    int i = 0;
+    while (i < stop_condition) {
+        if (__gal_elementwise_cmp(gal->elements, seq->elements, seq->element_count, gal->element_size)) {
+            return i;
+        }
+    }
+
+    return -1;
+}
 /**************
 * HELPER DEFS *
 ***************/
@@ -172,4 +202,15 @@ pgal_t __gal_expand(pgal_t gal) {
     gal->element_cap = new_cap;
 
     return gal;
+}
+
+int __gal_elementwise_cmp(void* set, void* subset, int subset_count, size_t element_size) {
+    for (int i = 0; i < subset_count; i++){
+        void* current_on_set = (void*) ((RAW_MEMORY_OFFSET)set + i * element_size);
+        void* current_on_subset = (void*) ((RAW_MEMORY_OFFSET)subset + i * element_size);
+        if (memcmp(current_on_set, current_on_subset, element_size) != 0) {
+            return 0;
+        }
+    }    
+    return 1;
 }

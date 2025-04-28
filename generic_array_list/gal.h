@@ -36,10 +36,17 @@ pgal_t gal_setn(pgal_t gal, int idx, void* element);
 pgal_t gal_remove_at(pgal_t gal, int idx);
 // Retorna o indice da primeira ocorrência do elemento element
 int gal_find(pgal_t gal, void* element);
+// Retorna uma nova lista gal_t com todos os as ocorrências de element em gal.
+gal_t gal_find_all(pgal_t gal, void* element);
+// Retorna o indice do primeiro elemento da primeira ocorrência de uma sequência.
+int gal_search(pgal_t gal, pgal_t seq);
+
 
 // Helpers
 int __gal_requires_resize(pgal_t gal);
 pgal_t __gal_expand(pgal_t gal);
+int __gal_elementwise_cmp(void* set, void* subset, int subset_count, size_t element_size);
+
 
 // DEFAULT PRINTERS
 
@@ -104,7 +111,12 @@ static void gml_print_char(void* item){ printf("%c", *(char*)item); }
         gal_setn((__gal), (__idx), &__gal__tmp);\
     }while(0)
 
-
+// Versão Generica de find
+#define gml_find(__gal, __val) \
+    ({\
+        __typeof__(__val) __gal__tmp = (__typeof__(__val)) __val;\
+        gal_find((pgal_t)__gal, &__gal__tmp);\
+    })
 // Versão genérica de pop
 
 /* 
