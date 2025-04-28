@@ -21,40 +21,22 @@ int main() {
    gml_append(&test, 'h'); // IDX 6
    PRINT_DEBUG_DATA(test);
 
-   printf("\nInsertion Tests\n");
-   PRINT_DEBUG_DATA(test);
-   gml_printarr(&test, gml_print_char);
-   char jk = 'J';
-   printf("Inserting 'J' to index 3\n");
-   gml_insert_at(&test, 3, 'B');
-   char at_idx_3 = 'A';
-   PRINT_DEBUG_DATA(test);
-   gml_getn(&test, 3, &at_idx_3, 'A');
-   printf("Element at index 3: %c\n", at_idx_3);
-   gml_printarr(&test, gml_print_char);
-   printf("-----------\n");
+   printf("Find Tests:\n");
+   char element_to_find = 'b';
+   int res = gal_find(&test, &element_to_find);
+   printf("Result: %d, expected: 1\n", res);
 
-   printf("\n\nPop Tests\n\n");
-   PRINT_DEBUG_DATA(test);
-   gml_printarr(&test, gml_print_char);
-   printf("\n");
-   char popchar;
-   gml_pop(&test, &popchar, 'Z');
-   PRINT_DEBUG_DATA(test);
-   printf("Extracted Char: %c\n", popchar);
-   gml_printarr(&test, gml_print_char);
+   element_to_find = 'a';
+   res = gal_find(&test, &element_to_find);
+   printf("Result: %d, expected: 0\n", res);
+
+   element_to_find = 'h';
+   res = gal_find(&test, &element_to_find);
+   printf("Result: %d, expected: 6\n", res);
+
+   element_to_find = 'z';
+   res = gal_find(&test, &element_to_find);
+   printf("Result: %d, expected: 3\n", res);
    
-   gml_pop(&test);
-   PRINT_DEBUG_DATA(test);
-   gml_printarr(&test, gml_print_char);
-
-   gml_append(&test, 'p'); // IDX 5
-   PRINT_DEBUG_DATA(test);
-   gml_printarr(&test, gml_print_char);
-
-   gml_setn(&test, 5, 'Z'); // IDX 5
-   PRINT_DEBUG_DATA(test);
-   gml_printarr(&test, gml_print_char);
-
    return 0;
 }

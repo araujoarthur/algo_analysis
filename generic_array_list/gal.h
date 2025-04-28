@@ -32,6 +32,10 @@ pgal_t gal_insert_at(pgal_t gal, int idx, void* element);
 void* gal_pop(pgal_t gal);
 // Define o valor de um elemento em determinado indice
 pgal_t gal_setn(pgal_t gal, int idx, void* element);
+// Remove o valor de determinado indice
+pgal_t gal_remove_at(pgal_t gal, int idx);
+// Retorna o indice da primeira ocorrência do elemento element
+int gal_find(pgal_t gal, void* element);
 
 // Helpers
 int __gal_requires_resize(pgal_t gal);
@@ -45,8 +49,10 @@ static void gml_print_char(void* item){ printf("%c", *(char*)item); }
 
 // GALMHL - GAL Macro Helper Lib
 
+// Retorna um ponteiro para o ultimo item de T, onde T é uma generic array list.
 #define _GAL_P_LAST_ITEM_OFFSET(T) (RAW_MEMORY_OFFSET)(T)->elements + ((pgal_t)T)->element_count * ((pgal_t)T)->element_size
 
+// Retorna um ponteiro para o i-ésimo item de T, onde T é uma generic array list.
 #define _GAL_P_ELEMENT_POSITION(T, I) (void*)(((RAW_MEMORY_OFFSET)((pgal_t)T)->elements + I * ((pgal_t)T)->element_size))
 
 #define _GAL_ENSURE_SIZE(T) \
@@ -97,6 +103,7 @@ static void gml_print_char(void* item){ printf("%c", *(char*)item); }
         __typeof__(__val) __gal__tmp = (__val);\
         gal_setn((__gal), (__idx), &__gal__tmp);\
     }while(0)
+
 
 // Versão genérica de pop
 

@@ -108,6 +108,36 @@ pgal_t gal_setn(pgal_t gal, int idx, void* element) {
     return gal;
 }
 
+pgal_t gal_remove_at(pgal_t gal, int idx) {
+    if(!gal) return NULL;
+
+    void *cut_at, *copy_from;
+    int copy_count;
+
+    cut_at = _GAL_P_ELEMENT_POSITION(gal, idx);
+    copy_from = cut_at + 1;
+    copy_count = gal->element_count - idx;
+
+    memmove(cut_at, copy_from, copy_count * gal->element_size);
+    memset(_GAL_P_LAST_ITEM_OFFSET(gal), 0, gal->element_size);
+
+    gal->element_count--;
+
+    return gal; 
+}
+
+int gal_find(pgal_t gal, void* element) {
+    if (!gal) return -1;
+
+    for(int i = 0; i < gal->element_count; i++) {
+        void* current = _GAL_P_ELEMENT_POSITION(gal, i);
+        if(memcmp(current, element, gal->element_size) == 0) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 /**************
 * HELPER DEFS *
 ***************/
